@@ -5,35 +5,24 @@ require_once '../models/Customer.php';
 require_once '../models/SushiItem.php';
 
 class CustomerController {
-    // Method to create an admin (or customer, depending on the functionality)
+    
+    // Method to create an admin (or customer)
     public function createAdmin($data) {
-        $firstName = sanitizeInput($data['firstName']);
-        $middleInitial = sanitizeInput($data['middleInitial']);
-        $lastName = sanitizeInput($data['lastName']);
-        $email = sanitizeInput($data['email']);
-        $phoneNumber = sanitizeInput($data['phoneNumber']);
-        $city = sanitizeInput($data['city']);
-        $street = sanitizeInput($data['street']);
-        $houseNumber = sanitizeInput($data['houseNumber']);
-        
-        // Encrypt the password
-        $password = password_hash($data['password'], PASSWORD_BCRYPT);
-
         $customer = new Customer();
+        $adminData = [
+            'firstName' => sanitizeInput($data['firstName']),
+            'middleInitial' => sanitizeInput($data['middleInitial']),
+            'lastName' => sanitizeInput($data['lastName']),
+            'email' => sanitizeInput($data['email']),
+            'phoneNumber' => sanitizeInput($data['phoneNumber']),
+            'city' => sanitizeInput($data['city']),
+            'street' => sanitizeInput($data['street']),
+            'houseNumber' => sanitizeInput($data['houseNumber']),
+            'password' => password_hash($data['password'], PASSWORD_BCRYPT),
+            'role' => 'admin'  // differentiating between customer/admin
+        ];
         
-        // Assuming the Customer model has a create method for admin/customer creation
-        return $customer->create([
-            'firstName' => $firstName,
-            'middleInitial' => $middleInitial,
-            'lastName' => $lastName,
-            'email' => $email,
-            'phoneNumber' => $phoneNumber,
-            'city' => $city,
-            'street' => $street,
-            'houseNumber' => $houseNumber,
-            'password' => $password,
-            'role' => 'admin'  // assuming 'role' can differentiate between customer/admin
-        ]);
+        return $customer->create($adminData);
     }
 
     // Method for customer signup

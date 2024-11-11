@@ -5,59 +5,77 @@ class SushiItem {
     private $db;
 
     public function __construct() {
-        $this->db = Database::getConnection();
+        // Initialize a MySQLi connection
+        $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+        // Check connection
+        if ($this->db->connect_error) {
+            die("Connection failed: " . $this->db->connect_error);
+        }
     }
 
-    // Create a new sushi item
+    // Add a new Sushi item
     public function create($data) {
-        $sql = "INSERT INTO sushi_items (itemName, description, price, availabilityStatus, category, ingredients, imagePath)
-                VALUES (:itemName, :description, :price, :availabilityStatus, :category, :ingredients, :imagePath)";
+        $itemName = $this->db->real_escape_string($data['itemName']);
+        $description = $this->db->real_escape_string($data['description']);
+        $price = $this->db->real_escape_string($data['price']);
+        $availabilityStatus = $this->db->real_escape_string($data['availabilityStatus']);
+        $category = $this->db->real_escape_string($data['category']);
+        $ingredients = $this->db->real_escape_string($data['ingredients']);
+
+        $query = "INSERT INTO Sushi_Item (itemName, description, price, availabilityStatus, category, ingredients) 
+                  VALUES ('$itemName', '$description', '$price', '$availabilityStatus', '$category', '$ingredients')";
         
-        $stmt = $this->db->prepare($sql);
-        
-        // Bind values
-        $stmt->bindParam(':itemName', $data['itemName']);
-        $stmt->bindParam(':description', $data['description']);
-        $stmt->bindParam(':price', $data['price']);
-        $stmt->bindParam(':availabilityStatus', $data['availabilityStatus']);
-        $stmt->bindParam(':category', $data['category']);
-        $stmt->bindParam(':ingredients', $data['ingredients']);
-        $stmt->bindParam(':imagePath', $data['imagePath']); // Assumes `imagePath` key in $data for image path
-        
-        return $stmt->execute();
+        if ($this->db->query($query)) {
+            return "Sushi item added successfully!";
+        } else {
+            throw new Exception("Error: " . $this->db->error);
+        }
     }
 
-    // Retrieve all sushi items
+    // Retrieve all Sushi items
     public function getAll() {
-        $sql = "SELECT * FROM sushi_items";
-        $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $query = "SELECT * FROM Sushi_Item";
+        $result = $this->db->query($query);
+
+        $items = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $items[] = $row;
+            }
+        }
+        return $items;
     }
 
-    // Update the price of a sushi item by ID
-    public function updatePrice($itemID, $price) {
-        $sql = "UPDATE sushi_items SET price = :price WHERE itemID = :itemID";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':price', $price);
-        $stmt->bindParam(':itemID', $itemID);
-        return $stmt->execute();
-    }
-
-    // Update the availability status of a sushi item by ID
-    public function updateAvailability($itemID, $availabilityStatus) {
-        $sql = "UPDATE sushi_items SET availabilityStatus = :availabilityStatus WHERE itemID = :itemID";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':availabilityStatus', $availabilityStatus);
-        $stmt->bindParam(':itemID', $itemID);
-        return $stmt->execute();
-    }
-
-    // Delete a sushi item by ID
+    // Delete a Sushi item by ID
     public function delete($itemID) {
-        $sql = "DELETE FROM sushi_items WHERE itemID = :itemID";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':itemID', $itemID);
-        return $stmt->execute();
+        $itemID = $this->db->real_escape_string($itemID);
+        $query = "DELETE FROM Sushi_Item WHERE itemID = '$itemID'";
+
+        if ($this->db->query($query)) {
+            return "Sushi item deleted successfully!";
+        } else {
+            throw new Exception("Error: " . $this->db->error);
+        }
+    }
+
+    // Update a Sushi item (partial updates)
+    public function update($itemID, $data) {
+        $itemID = $this->db->real_escape_string($itemID);
+        $fields = [];
+
+        foreach ($data as $key => $value) {
+            $escapedValue = $this->db->real_escape_string($value);
+            $fields[] = "$key = '$escapedValue'";
+        }
+
+        $query = "UPDATE Sushi_Item SET " . implode(", ", $fields) . " WHERE itemID = '$itemID'";
+
+        if ($this->db->query($query)) {
+            return "Sushi item updated successfully!";
+        } else {
+            throw new Exception("Error: " . $this->db->error);
+        }
     }
 }
 ?>

@@ -2,36 +2,37 @@
 require_once '../config/database.php';
 
 class Admin {
+
     private $db;
 
     public function __construct() {
-        $this->db = Database::getConnection();
+        // Initialize a MySQLi connection
+        $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+        // Check connection
+        if ($this->db->connect_error) {
+            die("Connection failed: " . $this->db->connect_error);
+        }
     }
 
-    // Method to create a new admin
-    public function create($name, $email, $username, $password, $role, $contactNumber) {
-        $sql = "INSERT INTO administrators (name, email, username, password, role, contactNumber) 
-                VALUES (:name, :email, :username, :password, :role, :contactNumber)";
-        $stmt = $this->db->prepare($sql);
+    // Create a new admin
+    public function create($data) {
+        $stmt = $this->db->prepare("INSERT INTO admins (name, email, username, password, role, contactNumber) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $data['name'], $data['email'], $data['username'], $data['password'], $data['role'], $data['contactNumber']);
+        $result = $stmt->execute();
+        $stmt->close();
 
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':role', $role);
-        $stmt->bindParam(':contactNumber', $contactNumber);
-
-        return $stmt->execute();
+        return $result;
     }
 
-    // Method to log in an admin
+    // Admin login
     public function login($username, $password) {
-        $sql = "SELECT * FROM administrators WHERE username = :username";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':username', $username);
+        $stmt = $this->db->prepare("SELECT * FROM admins WHERE username = ?");
+        $stmt->bind_param("s", $username);
         $stmt->execute();
-
-        $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->get_result();
+        $admin = $result->fetch_assoc();
+        $stmt->close();
 
         if ($admin && password_verify($password, $admin['password'])) {
             return $admin;
@@ -40,29 +41,31 @@ class Admin {
         return false;
     }
 
-    // Method to find an admin by ID
+    // Find an admin by ID
     public function findById($adminID) {
-        $sql = "SELECT * FROM administrators WHERE adminID = :adminID";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':adminID', $adminID);
+        $stmt = $this->db->prepare("SELECT * FROM admins WHERE id = ?");
+        $stmt->bind_param("i", $adminID);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $admin = $result->fetch_assoc();
+        $stmt->close();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $admin;
     }
 
-    // Method to update an admin profile
+    // Update admin profile
     public function update($adminID, $data) {
-        $sql = "UPDATE administrators SET name = :name, email = :email, username = :username, role = :role, contactNumber = :contactNumber 
-                WHERE adminID = :adminID";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare("UPDATE admins SET name = ?, email = ?, username = ?, role = ?, contactNumber = ? WHERE id = ?");
+        $stmt->bind_param("sssssi", $data['name'], $data['email'], $data['username'], $data['role'], $data['contactNumber'], $adminID);
+        $result = $stmt->execute();
+        $stmt->close();
 
-        $stmt->bindParam(':name', $data['name']);
-        $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':username', $data['username']);
-        $stmt->bindParam(':role', $data['role']);
-        $stmt->bindParam(':contactNumber', $data['contactNumber']);
-        $stmt->bindParam(':adminID', $adminID);
+        return $result;
+    }
 
-        return $stmt->execute();
+    // Close the MySQLi connection
+    public function __destruct() {
+        $this->db->close();
     }
 }
+?>

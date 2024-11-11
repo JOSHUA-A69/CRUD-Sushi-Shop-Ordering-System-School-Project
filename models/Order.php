@@ -3,108 +3,61 @@ require_once '../config/database.php';
 
 class Order {
     private $db;
-
+    
     public function __construct() {
-        $this->db = Database::getConnection();
-    }
+        // Initialize a MySQLi connection
+        $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-    // Method to create a new order
-    public function create($customerID, $items, $totalAmount) {
-        try {
-            $this->db->beginTransaction();
-
-            // Insert into orders table
-            $sql = "INSERT INTO orders (customerID, totalAmount, status, orderDate) 
-                    VALUES (:customerID, :totalAmount, 'Pending', NOW())";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':customerID', $customerID);
-            $stmt->bindParam(':totalAmount', $totalAmount);
-            $stmt->execute();
-            $orderID = $this->db->lastInsertId();
-
-            // Insert each item into order_items table
-            $sqlItem = "INSERT INTO order_items (orderID, itemID, quantity, price) 
-                        VALUES (:orderID, :itemID, :quantity, :price)";
-            $stmtItem = $this->db->prepare($sqlItem);
-
-            foreach ($items as $item) {
-                $stmtItem->bindParam(':orderID', $orderID);
-                $stmtItem->bindParam(':itemID', $item['itemID']);
-                $stmtItem->bindParam(':quantity', $item['quantity']);
-                $stmtItem->bindParam(':price', $item['price']);
-                $stmtItem->execute();
-            }
-
-            $this->db->commit();
-            return $orderID;
-        } catch (Exception $e) {
-            $this->db->rollBack();
-            return false;
+        // Check connection
+        if ($this->db->connect_error) {
+            die("Connection failed: " . $this->db->connect_error);
         }
     }
 
-    // Method to find an order by ID
+    // Create a new order
+    public function create($data) {
+        $customerID = $this->db->real_escape_string($data['customerID']);
+        $items = json_encode($data['items']); // Assuming items are an array that will be stored as a JSON string
+        
+        $query = "INSERT INTO Orders (customerID, items) VALUES ('$customerID', '$items')";
+        
+        if ($this->db->query($query)) {
+            return "Order placed successfully!";
+        } else {
+            throw new Exception("Error: " . $this->db->error);
+        }
+    }
+
+    // Get order details by order ID
     public function findById($orderID) {
-        $sql = "SELECT * FROM orders WHERE orderID = :orderID";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':orderID', $orderID);
-        $stmt->execute();
+        $orderID = $this->db->real_escape_string($orderID);
+        
+        $query = "SELECT * FROM Orders WHERE orderID = '$orderID'";
+        $result = $this->db->query($query);
 
-        $order = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($order) {
-            $order['items'] = $this->getOrderItems($orderID);
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc(); // Return as an associative array
+        } else {
+            throw new Exception("Order not found.");
         }
-        return $order;
     }
 
-    // Method to get all orders
-    public function getAll() {
-        $sql = "SELECT * FROM orders";
-        $stmt = $this->db->query($sql);
-        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // Fetch items for each order
-        foreach ($orders as &$order) {
-            $order['items'] = $this->getOrderItems($order['orderID']);
-        }
-        return $orders;
-    }
-
-    // Method to get orders by customer ID
+    // Get orders for a specific customer
     public function findByCustomerId($customerID) {
-        $sql = "SELECT * FROM orders WHERE customerID = :customerID";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':customerID', $customerID);
-        $stmt->execute();
+        $customerID = $this->db->real_escape_string($customerID);
+        
+        $query = "SELECT * FROM Orders WHERE customerID = '$customerID'";
+        $result = $this->db->query($query);
 
-        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // Fetch items for each order
-        foreach ($orders as &$order) {
-            $order['items'] = $this->getOrderItems($order['orderID']);
+        if ($result && $result->num_rows > 0) {
+            $orders = [];
+            while ($row = $result->fetch_assoc()) {
+                $orders[] = $row; // Add each order to the array
+            }
+            return $orders;
+        } else {
+            throw new Exception("No orders found for the specified customer.");
         }
-        return $orders;
-    }
-
-    // Helper method to get items in an order
-    private function getOrderItems($orderID) {
-        $sql = "SELECT oi.*, si.itemName FROM order_items oi 
-                JOIN sushi_items si ON oi.itemID = si.itemID 
-                WHERE oi.orderID = :orderID";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':orderID', $orderID);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    // Method to update order status
-    public function updateStatus($orderID, $status) {
-        $sql = "UPDATE orders SET status = :status WHERE orderID = :orderID";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':status', $status);
-        $stmt->bindParam(':orderID', $orderID);
-
-        return $stmt->execute();
     }
 }
+?>

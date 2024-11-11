@@ -1,43 +1,94 @@
 <?php
- require_once '../config/database.php';
+require_once '../config/database.php';
 
 class Customer {
+    
     private $db;
 
     public function __construct() {
-        $this->db = Database::getConnection();
+        // Initialize a MySQLi connection
+        $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        if ($this->db->connect_error) {
+            die("Connection failed: " . $this->db->connect_error);
+        }
     }
 
+    // Create a new customer or admin
     public function create($data) {
-        $passwordHash = password_hash($data['password'], PASSWORD_BCRYPT);
-        $stmt = $this->db->prepare("INSERT INTO customers (name, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $data['name'], $data['email'], $passwordHash);
-        return $stmt->execute();
+        $stmt = $this->db->prepare("INSERT INTO customers (firstName, middleInitial, lastName, email, phoneNumber, city, street, houseNumber, password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param(
+            "ssssssssss",
+            $data['firstName'],
+            $data['middleInitial'],
+            $data['lastName'],
+            $data['email'],
+            $data['phoneNumber'],
+            $data['city'],
+            $data['street'],
+            $data['houseNumber'],
+            $data['password'],
+            $data['role']
+        );
+        
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
 
+    // Customer login
     public function login($email, $password) {
         $stmt = $this->db->prepare("SELECT * FROM customers WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         $customer = $result->fetch_assoc();
+        $stmt->close();
 
         if ($customer && password_verify($password, $customer['password'])) {
             return $customer;
         }
+
         return false;
     }
 
+    // Find a customer by ID
     public function findById($customerID) {
         $stmt = $this->db->prepare("SELECT * FROM customers WHERE id = ?");
         $stmt->bind_param("i", $customerID);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        $result = $stmt->get_result();
+        $customer = $result->fetch_assoc();
+        $stmt->close();
+
+        return $customer;
     }
 
+    // Update a customer profile
     public function update($customerID, $data) {
-        $stmt = $this->db->prepare("UPDATE customers SET name = ?, email = ? WHERE id = ?");
-        $stmt->bind_param("ssi", $data['name'], $data['email'], $customerID);
-        return $stmt->execute();
+        $stmt = $this->db->prepare("UPDATE customers SET firstName = ?, middleInitial = ?, lastName = ?, email = ?, phoneNumber = ?, city = ?, street = ?, houseNumber = ? WHERE id = ?");
+        $stmt->bind_param(
+            "ssssssssi",
+            $data['firstName'],
+            $data['middleInitial'],
+            $data['lastName'],
+            $data['email'],
+            $data['phoneNumber'],
+            $data['city'],
+            $data['street'],
+            $data['houseNumber'],
+            $customerID
+        );
+        
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
+    }
+
+    // Close the MySQLi connection
+    public function __destruct() {
+        $this->db->close();
     }
 }
+?>
