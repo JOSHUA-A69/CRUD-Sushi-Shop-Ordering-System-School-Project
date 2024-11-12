@@ -43,5 +43,20 @@ class SushiItemController {
         $sushiItem = new SushiItem();
         return $sushiItem->update($itemID, ['availabilityStatus' => sanitizeInput($availabilityStatus)]);
     }
+
+    public function getSushiItemById($id) {
+        $sushiItem = new SushiItem();
+        return $sushiItem->findById($id);
+    }
+
+    public function updateSushiItem($id, $data) {
+        $sushiItem = new SushiItem();
+        return $sushiItem->update($id, $data);
+    }
+
+    public function deleteSushiItem($id) {
+        $sushiItem = new SushiItem();
+        return $sushiItem->delete($id);
+    }
 }
 ?>

@@ -86,6 +86,14 @@ class Customer {
         return $result;
     }
 
+    public function delete($customerID) {
+        $sql = "DELETE FROM customers WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $customerID);
+        return $stmt->execute();
+    }
+    
+
     // Close the MySQLi connection
     public function __destruct() {
         $this->db->close();

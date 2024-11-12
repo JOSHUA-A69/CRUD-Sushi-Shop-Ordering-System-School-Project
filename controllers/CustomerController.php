@@ -53,5 +53,11 @@ class CustomerController {
     public function getSushiMenu() {
         $sushiItem = new SushiItem();
         return $sushiItem->getAll();
+     }
+
+     public function deleteCustomer($customerID) {
+        $customer = new Customer();
+        return $customer->delete($customerID);
     }
+      
 }

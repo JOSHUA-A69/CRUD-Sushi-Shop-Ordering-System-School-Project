@@ -77,5 +77,54 @@ class SushiItem {
             throw new Exception("Error: " . $this->db->error);
         }
     }
+
+    public function findById($id) {
+        $sql = "SELECT * FROM sushi_items WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+    
+        if ($stmt === false) {
+            die("MySQLi Error: " . $this->db->error);
+        }
+    
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+    
+        $result = $stmt->get_result();
+        $sushiItem = $result->fetch_assoc();
+    
+        $stmt->close(); // Close the statement after execution
+        return $sushiItem;
+    }
+    
+    public function update($id, $data) {
+        $sql = "UPDATE sushi_items SET name = ?, description = ?, price = ?, availability = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+    
+        if ($stmt === false) {
+            die("MySQLi Error: " . $this->db->error);
+        }
+    
+        $stmt->bind_param("ssdii", $data['name'], $data['description'], $data['price'], $data['availability'], $id);
+        $success = $stmt->execute();
+    
+        $stmt->close(); // Close the statement after execution
+        return $success;
+    }
+    
+    public function delete($id) {
+        $sql = "DELETE FROM sushi_items WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+    
+        if ($stmt === false) {
+            die("MySQLi Error: " . $this->db->error);
+        }
+    
+        $stmt->bind_param("i", $id);
+        $success = $stmt->execute();
+    
+        $stmt->close(); // Close the statement after execution
+        return $success;
+    }
+    
 }
 ?>

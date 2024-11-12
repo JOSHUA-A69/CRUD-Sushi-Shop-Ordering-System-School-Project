@@ -42,5 +42,17 @@ class OrderController {
         return isset($data['customerID']) && !empty($data['customerID']) &&
                isset($data['items']) && is_array($data['items']) && count($data['items']) > 0;
     }
+
+    public function getOrderById($orderID) {
+        $order = new Order();
+        return $order->findById($orderID);
+    }
+
+    // Method to update order status
+    public function updateOrderStatus($orderID, $status) {
+        $order = new Order();
+        return $order->updateStatus($orderID, $status);
+    }
 }
 ?>
+

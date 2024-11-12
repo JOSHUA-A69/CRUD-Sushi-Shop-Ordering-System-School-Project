@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'contactNumber' => $_POST['contactNumber']
     ];
     $adminController->updateProfile($adminID, $updatedData);
-    header("Location: update_profile.php?success=1");
+    header("Location: profile.php?success=1");
 }
 ?>
 

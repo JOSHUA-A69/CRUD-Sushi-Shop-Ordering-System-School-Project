@@ -59,5 +59,39 @@ class Order {
             throw new Exception("No orders found for the specified customer.");
         }
     }
+   
+    public function findById($orderID) {
+        $sql = "SELECT * FROM orders WHERE orderID = ?";
+        $stmt = $this->db->prepare($sql);
+        
+        if ($stmt === false) {
+            die("MySQLi Error: " . $this->db->error);
+        }
+    
+        $stmt->bind_param("i", $orderID);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+        $order = $result->fetch_assoc();
+        
+        $stmt->close(); // Close statement after execution
+        return $order;
+    }
+    
+    public function updateStatus($orderID, $status) {
+        $sql = "UPDATE orders SET status = ? WHERE orderID = ?";
+        $stmt = $this->db->prepare($sql);
+    
+        if ($stmt === false) {
+            die("MySQLi Error: " . $this->db->error);
+        }
+    
+        $stmt->bind_param("si", $status, $orderID);
+        $success = $stmt->execute();
+    
+        $stmt->close(); // Close statement after execution
+        return $success;
+    }
+    
 }
 ?>

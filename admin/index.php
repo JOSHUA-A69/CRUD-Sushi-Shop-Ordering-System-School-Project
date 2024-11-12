@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="admin-container">
-        <h1>Welcome to the Sushi Shop Admin Dashboard</h1>
+        <h1>Welcome to the Divine Sushi Shop Admin Dashboard</h1>
         
         <nav class="admin-nav">
             <ul>
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <li><a href="manage_orders.php">Manage Orders</a></li>
                 <li><a href="manage_sushi.php">Manage Sushi Items</a></li>
                 <li><a href="profile.php">Update Profile</a></li>
-                <li><a href="../auth/login.php">Logout</a></li>
+                <li><a href="../auth/logout.php">Logout</a></li>
             </ul>
         </nav>
 

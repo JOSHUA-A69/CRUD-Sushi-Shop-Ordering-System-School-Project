@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Add Sushi Item</button>
         </form>
-        <a href="manage_sushi_items.php" class="back-link">Back to Manage Sushi Items</a>
+        <a href="manage_sushi.php" class="back-link">Back to Manage Sushi Items</a>
     </div>
 </body>
 </html>
