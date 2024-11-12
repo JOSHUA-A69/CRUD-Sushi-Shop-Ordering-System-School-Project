@@ -15,6 +15,7 @@ $customers = $customerController->getAllCustomers();
 <body>
     <div class="admin-container">
         <h1>Manage Customers</h1>
+       <button><a href="./index.php">Go back to options</a></button>
         <table>
             <thead>
                 <tr>
