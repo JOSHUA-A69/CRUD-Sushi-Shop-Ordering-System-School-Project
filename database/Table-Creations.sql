@@ -69,3 +69,47 @@ INSERT INTO sushi_item(ItemName, price, description, AvailabilityStatus, categor
     ('Small pan (2pax)', 350.0, 'Small pan suitable for 2 people', 1, 'Pan', 'Rice, Mixed Toppings'),
     ('Medium pan (4-6pax)', 750.0, 'Medium pan suitable for 4-6 people', 1, 'Pan', 'Rice, Mixed Toppings'),
     ('Large pan (8-10pax)', 1100.0, 'Large pan suitable for 8-10 people', 1, 'Pan', 'Rice, Mixed Toppings');
+
+
+-- Administrators table
+ALTER TABLE administrators
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ADD UNIQUE INDEX idx_email (email),
+ADD UNIQUE INDEX idx_username (username);
+
+-- Customers table
+ALTER TABLE customers
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ADD UNIQUE INDEX idx_email (email);
+
+/*Error
+-- Orders table
+ALTER TABLE orders
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ADD INDEX idx_customer (customerID),
+ADD INDEX idx_status (status);
+
+-- Sushi_Item table
+ALTER TABLE sushi_item
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ADD INDEX idx_category (category),
+ADD INDEX idx_status (availabilityStatus);*/
+
+--Proper Naming
+-- Orders table
+ALTER TABLE orders
+ADD COLUMN date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ADD INDEX idx_orders_customerID (customerID),
+ADD INDEX idx_orders_status (OrderStatus);
+
+-- Sushi_Item table
+ALTER TABLE sushi_item
+ADD COLUMN date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ADD INDEX idx_sushi_item_category (category),
+ADD INDEX idx_sushi_item_availability (availabilityStatus);

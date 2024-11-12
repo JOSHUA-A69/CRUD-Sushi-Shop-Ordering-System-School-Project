@@ -1,63 +1,64 @@
 <?php
+// CustomerController.php
 require_once '../config/database.php';
-require_once '../config/functions.php';
+require_once '../lib/BaseController.php';
 require_once '../models/Customer.php';
-require_once '../models/SushiItem.php';
 
-class CustomerController {
-    
-    // Method to create an admin (or customer)
-    public function createAdmin($data) {
-        $customer = new Customer();
-        $adminData = [
-            'firstName' => sanitizeInput($data['firstName']),
-            'middleInitial' => sanitizeInput($data['middleInitial']),
-            'lastName' => sanitizeInput($data['lastName']),
-            'email' => sanitizeInput($data['email']),
-            'phoneNumber' => sanitizeInput($data['phoneNumber']),
-            'city' => sanitizeInput($data['city']),
-            'street' => sanitizeInput($data['street']),
-            'houseNumber' => sanitizeInput($data['houseNumber']),
-            'password' => password_hash($data['password'], PASSWORD_BCRYPT),
-            'role' => 'admin'  // differentiating between customer/admin
-        ];
-        
-        return $customer->create($adminData);
+class CustomerController extends BaseController {
+    private $db;
+    private $customerModel;
+
+    public function __construct() {
+        // Establish database connection
+        $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+        // Check for connection errors
+        if ($this->db->connect_error) {
+            die("Connection failed: " . $this->db->connect_error);
+        }
+
+        // Initialize the Customer model
+        $this->customerModel = new Customer();
     }
 
-    // Method for customer signup
     public function signup($data) {
-        $customer = new Customer();
-        return $customer->create($data);
-    }
+        try {
+            $this->validateRequest($data, [
+                'firstName', 'lastName', 'email', 'password', 'phoneNumber'
+            ]);
 
-    // Method for customer login
-    public function login($email, $password) {
-        $customer = new Customer();
-        return $customer->login($email, $password);
+            $customerId = $this->customerModel->create($data);
+            return $this->respondSuccess(
+                ['id' => $customerId], 
+                'Customer registered successfully'
+            );
+        } catch (ValidationException $e) {
+            return $this->respondError($e->getMessage(), 400);
+        } catch (Exception $e) {
+            Logger::error("Customer signup error: " . $e->getMessage());
+            return $this->respondError('Registration failed', 500);
+        }
     }
-
-    // Method to get customer profile
-    public function getProfile($customerID) {
-        $customer = new Customer();
-        return $customer->findById($customerID);
+    
+    public function getAllCustomers() {
+        $query = "SELECT id, name, email, phone FROM Customers"; 
+        $result = $this->db->query($query);
+    
+        if (!$result) {
+            die("Error fetching customers: " . $this->db->error);
+        }
+    
+        $customers = [];
+        while ($row = $result->fetch_assoc()) {
+            $customers[] = $row;
+        }
+    
+        return $customers;
     }
-
-    // Method to update customer profile
-    public function updateProfile($customerID, $data) {
-        $customer = new Customer();
-        return $customer->update($customerID, $data);
-    }
-
-    // Method to get the sushi menu
-    public function getSushiMenu() {
-        $sushiItem = new SushiItem();
-        return $sushiItem->getAll();
-     }
-
-     public function deleteCustomer($customerID) {
-        $customer = new Customer();
-        return $customer->delete($customerID);
-    }
-      
+    
+    public function __destruct() {
+        // Close the database connection
+        $this->db->close();
 }
+ }
+?>

@@ -28,14 +28,14 @@ $customers = $customerController->getAllCustomers();
             <tbody>
                 <?php foreach ($customers as $customer): ?>
                     <tr>
-                        <td><?= $customer['id'] ?></td>
-                        <td><?= $customer['name'] ?></td>
-                        <td><?= $customer['email'] ?></td>
-                        <td><?= $customer['phone'] ?></td>
+                        <td><?= $customer['customer_id'] ?? 'N/A' ?></td>
+                        <td><?= ($customer['first_name'] ?? '') . ' ' . ($customer['last_name'] ?? '') ?></td>
+                        <td><?= $customer['email_address'] ?? 'N/A' ?></td>
+                        <td><?= $customer['phone_number'] ?? 'N/A' ?></td>
                         <td>
-                            <a href="view_customer.php?id=<?= $customer['id'] ?>">View</a> |
-                            <a href="edit_customer.php?id=<?= $customer['id'] ?>">Edit</a> |
-                            <a href="delete_customer.php?id=<?= $customer['id'] ?>">Delete</a>
+                            <a href="view_customer.php?id=<?= $customer['customer_id'] ?>">View</a> |
+                            <a href="edit_customer.php?id=<?= $customer['customer_id'] ?>">Edit</a> |
+                            <a href="delete_customer.php?id=<?= $customer['customer_id'] ?>">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -44,6 +44,3 @@ $customers = $customerController->getAllCustomers();
     </div>
 </body>
 </html>
-
-
-

@@ -1,62 +1,35 @@
 <?php
-require_once '../config/database.php';
-require_once '../config/functions.php';
+// SushiItemController.php
+require_once '../lib/BaseController.php';
 require_once '../models/SushiItem.php';
-
-class SushiItemController {
-
-    // Add a new Sushi item
+class SushiItemController extends BaseController {
+    private $sushiItemModel;
+    
+    public function __construct() {
+        $this->sushiItemModel = new SushiItem();
+    }
+    
     public function addItem($data) {
-        $sushiData = [
-            'itemName' => sanitizeInput($data['itemName']),
-            'description' => sanitizeInput($data['description']),
-            'price' => sanitizeInput($data['price']),
-            'availabilityStatus' => sanitizeInput($data['availabilityStatus']),
-            'category' => sanitizeInput($data['category']),
-            'ingredients' => sanitizeInput($data['ingredients'])
-        ];
-
-        $sushiItem = new SushiItem();
-        return $sushiItem->create($sushiData);
-    }
-
-    // List all Sushi items
-    public function listItems() {
-        $sushiItem = new SushiItem();
-        return $sushiItem->getAll();
-    }
-
-    // Delete a Sushi item by ID
-    public function deleteItem($itemID) {
-        $sushiItem = new SushiItem();
-        return $sushiItem->delete($itemID);
-    }
-
-    // Update Sushi item price
-    public function updateItemPrice($itemID, $price) {
-        $sushiItem = new SushiItem();
-        return $sushiItem->update($itemID, ['price' => sanitizeInput($price)]);
-    }
-
-    // Update Sushi item availability status
-    public function updateItemAvailability($itemID, $availabilityStatus) {
-        $sushiItem = new SushiItem();
-        return $sushiItem->update($itemID, ['availabilityStatus' => sanitizeInput($availabilityStatus)]);
-    }
-
-    public function getSushiItemById($id) {
-        $sushiItem = new SushiItem();
-        return $sushiItem->findById($id);
-    }
-
-    public function updateSushiItem($id, $data) {
-        $sushiItem = new SushiItem();
-        return $sushiItem->update($id, $data);
-    }
-
-    public function deleteSushiItem($id) {
-        $sushiItem = new SushiItem();
-        return $sushiItem->delete($id);
+        try {
+            $this->validateRequest($data, [
+                'itemName', 'description', 'price', 'category'
+            ]);
+            $this->validatePermissions($_SESSION['admin_id'], 'admin');
+            
+            $itemId = $this->sushiItemModel->create($data);
+            return $this->respondSuccess(
+                ['id' => $itemId],
+                'Sushi item added successfully'
+            );
+        } catch (ValidationException $e) {
+            return $this->respondError($e->getMessage(), 400);
+        } catch (AuthorizationException $e) {
+            return $this->respondError($e->getMessage(), 403);
+        } catch (Exception $e) {
+            Logger::error("Sushi item creation error: " . $e->getMessage());
+            return $this->respondError('Failed to add sushi item', 500);
+        }
     }
 }
+
 ?>
