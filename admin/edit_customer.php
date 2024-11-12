@@ -1,36 +1,44 @@
 <?php
 require_once '../controllers/CustomerController.php';
 
+$customerController = new CustomerController();
+$customer = null;
+
 // Check if 'id' parameter is set in the URL
 if (isset($_GET['id'])) {
     $customerID = $_GET['id'];
-    $customerController = new CustomerController();
     $customer = $customerController->getProfile($customerID);
 
-    // If form is submitted, update customer details
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $updatedData = [
-            'firstName' => $_POST['firstName'],
-            'middleInitial' => $_POST['middleInitial'],
-            'lastName' => $_POST['lastName'],
-            'email' => $_POST['email'],
-            'phoneNumber' => $_POST['phoneNumber'],
-            'city' => $_POST['city'],
-            'street' => $_POST['street'],
-            'houseNumber' => $_POST['houseNumber']
-        ];
-
-        $updateSuccess = $customerController->updateProfile($customerID, $updatedData);
-
-        if ($updateSuccess) {
-            echo "<p>Customer updated successfully.</p>";
-        } else {
-            echo "<p>Failed to update customer.</p>";
-        }
+    if (!$customer) {
+        echo "Customer not found.";
+        exit;
     }
 } else {
     echo "Customer ID not specified.";
     exit;
+}
+
+// Check if the form has been submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve form data safely
+    $firstName = $_POST['firstName'] ?? null;
+    $middleInitial = $_POST['middleInitial'] ?? null;
+    $lastName = $_POST['lastName'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $phoneNumber = $_POST['phoneNumber'] ?? null;
+    $street = $_POST['street'] ?? null;
+    $citytown = $_POST['citytown'] ?? null;
+    $houseNumber = $_POST['houseNumber'] ?? null;
+
+    // Update customer profile
+    $updateSuccess = $customerController->updateProfile($customerID, $firstName, $middleInitial, $lastName, $email, $phoneNumber, $street, $citytown, $houseNumber);
+
+    if ($updateSuccess) {
+        echo "Customer profile updated successfully!";
+        // Optionally, redirect to another page here
+    } else {
+        echo "Failed to update customer profile.";
+    }
 }
 ?>
 
@@ -39,43 +47,35 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Edit Customer</title>
-    <link rel="stylesheet" href="styles/admin.css">
 </head>
 <body>
-    <div class="admin-container">
-        <h1>Edit Customer</h1>
-        <?php if ($customer): ?>
-            <form method="post">
-                <label>First Name:</label>
-                <input type="text" name="firstName" value="<?= $customer['firstName'] ?>" required>
-                
-                <label>Middle Initial:</label>
-                <input type="text" name="middleInitial" value="<?= $customer['middleInitial'] ?>">
+    <h1>Edit Customer Profile</h1>
+    <form method="POST" action="">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="firstName" id="firstName" value="<?= htmlspecialchars($customer['firstName']) ?>" required><br>
 
-                <label>Last Name:</label>
-                <input type="text" name="lastName" value="<?= $customer['lastName'] ?>" required>
+        <label for="middleInitial">Middle Initial:</label>
+        <input type="text" name="middleInitial" id="middleInitial" value="<?= htmlspecialchars($customer['middleInitial']) ?>"><br>
 
-                <label>Email:</label>
-                <input type="email" name="email" value="<?= $customer['email'] ?>" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" id="lastName" value="<?= htmlspecialchars($customer['lastName']) ?>" required><br>
 
-                <label>Phone Number:</label>
-                <input type="text" name="phoneNumber" value="<?= $customer['phoneNumber'] ?>" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="<?= htmlspecialchars($customer['email']) ?>" required><br>
 
-                <label>City:</label>
-                <input type="text" name="city" value="<?= $customer['city'] ?>" required>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" name="phoneNumber" id="phoneNumber" value="<?= htmlspecialchars($customer['phoneNumber']) ?>"><br>
 
-                <label>Street:</label>
-                <input type="text" name="street" value="<?= $customer['street'] ?>" required>
+        <label for="street">Street:</label>
+        <input type="text" name="street" id="street" value="<?= htmlspecialchars($customer['street']) ?>"><br>
 
-                <label>House Number:</label>
-                <input type="text" name="houseNumber" value="<?= $customer['houseNumber'] ?>" required>
+        <label for="citytown">City/Town:</label>
+        <input type="text" name="citytown" id="citytown" value="<?= htmlspecialchars($customer['citytown']) ?>"><br>
 
-                <button type="submit">Update Customer</button>
-                <a href="manage_customers.php">Cancel</a>
-            </form>
-        <?php else: ?>
-            <p>Customer not found.</p>
-        <?php endif; ?>
-    </div>
+        <label for="houseNumber">House Number:</label>
+        <input type="text" name="houseNumber" id="houseNumber" value="<?= htmlspecialchars($customer['houseNumber']) ?>"><br>
+
+        <input type="submit" value="Update Profile">
+    </form>
 </body>
 </html>

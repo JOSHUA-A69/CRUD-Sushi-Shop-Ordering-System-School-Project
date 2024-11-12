@@ -41,7 +41,7 @@ class CustomerController extends BaseController {
     }
     
     public function getAllCustomers() {
-        $query = "SELECT id, name, email, phone FROM Customers"; 
+        $query = "SELECT CustomerID, FirstName, LastName, Email, PhoneNumber FROM Customers"; 
         $result = $this->db->query($query);
     
         if (!$result) {
@@ -55,7 +55,45 @@ class CustomerController extends BaseController {
     
         return $customers;
     }
+
+    public function getProfile($customerID) {
+        // Query to get the customer profile by ID
+        $query = "SELECT CustomerID, firstName, middleInitial, lastName, email, phoneNumber, street, citytown, houseNumber FROM customers WHERE CustomerID = ?";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $customerID); // Ensure this matches the function parameter
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        // Check if customer was found
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null; // No customer found with the given ID
+        }
+    }
+
+    public function updateProfile($customerID, $firstName, $middleInitial, $lastName, $email, $phoneNumber, $street, $citytown, $houseNumber) {
+        // SQL query to update customer information
+        $query = "UPDATE customers 
+                  SET firstName = ?, middleInitial = ?, lastName = ?, email = ?, phoneNumber = ?, street = ?, citytown = ?, houseNumber = ?
+                  WHERE CustomerID = ?";
     
+        // Prepare the statement
+        $stmt = $this->db->prepare($query);
+        
+        // Bind parameters
+        $stmt->bind_param("ssssssssi", $firstName, $middleInitial, $lastName, $email, $phoneNumber, $street, $citytown, $houseNumber, $customerID);
+    
+        // Execute the statement and check if it was successful
+        if ($stmt->execute()) {
+            return true; // Update successful
+        } else {
+            return false; // Update failed
+        }
+    }
+    
+   
     public function __destruct() {
         // Close the database connection
         $this->db->close();

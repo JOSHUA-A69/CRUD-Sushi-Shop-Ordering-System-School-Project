@@ -28,14 +28,14 @@ $customers = $customerController->getAllCustomers();
             <tbody>
                 <?php foreach ($customers as $customer): ?>
                     <tr>
-                        <td><?= $customer['customer_id'] ?? 'N/A' ?></td>
-                        <td><?= ($customer['first_name'] ?? '') . ' ' . ($customer['last_name'] ?? '') ?></td>
-                        <td><?= $customer['email_address'] ?? 'N/A' ?></td>
-                        <td><?= $customer['phone_number'] ?? 'N/A' ?></td>
+                        <td><?= $customer['CustomerID'] ?></td>
+                        <td><?= ($customer['FirstName'] ?? '') . ' ' . ($customer['LastName'] ?? '') ?></td>
+                        <td><?= $customer['Email'] ?? 'N/A' ?></td>
+                        <td><?= $customer['PhoneNumber'] ?? 'N/A' ?></td>
                         <td>
-                            <a href="view_customer.php?id=<?= $customer['customer_id'] ?>">View</a> |
-                            <a href="edit_customer.php?id=<?= $customer['customer_id'] ?>">Edit</a> |
-                            <a href="delete_customer.php?id=<?= $customer['customer_id'] ?>">Delete</a>
+                            <a href="view_customer.php?id=<?= $customer['CustomerID'] ?>">View</a> |
+                            <a href="edit_customer.php?id=<?= $customer['CustomerID'] ?>">Edit</a> |
+                            <a href="delete_customer.php?id=<?= $customer['CustomerID'] ?>">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

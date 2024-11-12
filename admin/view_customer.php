@@ -23,11 +23,11 @@ if (isset($_GET['id'])) {
     <div class="admin-container">
         <h1>Customer Details</h1>
         <?php if ($customer): ?>
-            <p><strong>Customer ID:</strong> <?= $customer['id'] ?></p>
+            <p><strong>Customer ID:</strong> <?= $customer['CustomerID'] ?></p>
             <p><strong>Name:</strong> <?= $customer['firstName'] . ' ' . $customer['middleInitial'] . ' ' . $customer['lastName'] ?></p>
             <p><strong>Email:</strong> <?= $customer['email'] ?></p>
             <p><strong>Phone Number:</strong> <?= $customer['phoneNumber'] ?></p>
-            <p><strong>Address:</strong> <?= $customer['street'] . ', ' . $customer['city'] . ', House Number ' . $customer['houseNumber'] ?></p>
+            <p><strong>Address:</strong> <?= $customer['street'] . ', ' . $customer['citytown'] . ', House Number ' . $customer['houseNumber'] ?></p>
             <a href="manage_customers.php">Back to Customer List</a>
         <?php else: ?>
             <p>Customer not found.</p>
