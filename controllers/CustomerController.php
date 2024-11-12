@@ -93,7 +93,22 @@ class CustomerController extends BaseController {
         }
     }
     
-   
+    public function deleteCustomer($customerID) {
+        // SQL query to delete the customer by ID
+        $query = "DELETE FROM customers WHERE CustomerID = ?";
+        
+        // Prepare the statement
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $customerID);
+    
+        // Execute the query and check if the deletion was successful
+        if ($stmt->execute()) {
+            return $stmt->affected_rows > 0; // Returns true if a row was deleted
+        } else {
+            return false; // Returns false if the deletion failed
+        }
+    }
+    
     public function __destruct() {
         // Close the database connection
         $this->db->close();
