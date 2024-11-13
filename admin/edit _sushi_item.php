@@ -16,21 +16,24 @@ if (isset($_GET['id'])) {
         $description = $_POST['description'];
         $price = $_POST['price'];
         $availability = isset($_POST['availabilitystatus']) ? 1 : 0;
+        $category = $_POST['category'];
 
         // Update the sushi item in the database
         $updateSuccess = $sushiItemController->updateSushiItem($itemID, [
-            'itemname' => $name,  
+            'itemname' => $name,
             'description' => $description,
             'price' => $price,
             'availability' => $availability,
+            'category' => $category
         ]);
 
         if ($updateSuccess) {
-            // Direct PHP redirection
-            header("Location: manage_sushi_item.php");
-            exit();
+            // Redirect with exit after header
+            header("Location: manage_sushi.php");
+            exit(); // Stop script after redirection
         } else {
-            echo "<script>alert('Failed to update sushi item.');</script>";
+            // Error handling
+            $error = "Failed to update sushi item.";
         }
     }
 } else {
@@ -48,6 +51,9 @@ if (isset($_GET['id'])) {
 <body>
     <?php if ($sushiItem): ?>
         <h1>Edit Sushi Item</h1>
+        <?php if (isset($error)): ?>
+            <p style="color: red;"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
         <form method="POST">
             <label for="name">Name:</label>
             <input type="text" name="itemname" value="<?= htmlspecialchars($sushiItem['itemname']) ?>" required><br>
@@ -61,6 +67,9 @@ if (isset($_GET['id'])) {
             <label for="availability">Available:</label>
             <input type="checkbox" name="availabilitystatus" <?= $sushiItem['availability'] ? 'checked' : '' ?>><br>
 
+            <label for="category">Category:</label>
+            <input type="text" name="category" value="<?= htmlspecialchars($sushiItem['category']) ?>" required><br>
+
             <input type="submit" value="Update">
         </form>
     <?php else: ?>
@@ -68,3 +77,4 @@ if (isset($_GET['id'])) {
     <?php endif; ?>
 </body>
 </html>
+<?php ob_end_flush(); // End output buffering ?>

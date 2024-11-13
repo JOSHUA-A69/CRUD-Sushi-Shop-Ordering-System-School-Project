@@ -48,7 +48,7 @@ class SushiItem extends BaseModel {
     // Update sushi item
     public function update($id, $data) {
         $query = "UPDATE {$this->table} SET itemName = ?, description = ?, price = ?, availabilityStatus = ? WHERE id = ?";
-        $params = [$data['itemName'], $data['description'], $data['price'], $data['availabilityStatus'], $id];
+        $params = [$data['itemName'], $data['description'], $data['price'], $data['availabilityStatus'], $data['category'], $id];
         return $this->executeStatement($query, $params, "ssdsii");
     }
 
