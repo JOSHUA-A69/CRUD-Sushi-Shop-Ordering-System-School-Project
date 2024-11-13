@@ -52,9 +52,9 @@ class SushiItem extends BaseModel {
         return $this->executeStatement($query, $params, "ssdsii");
     }
 
-    // Delete sushi item
     public function delete($id) {
-        $query = "DELETE FROM {$this->table} WHERE id = ?";
+        // Update 'id' to the actual primary key field of your 'sushi_item' table
+        $query = "DELETE FROM {$this->table} WHERE ItemID = ?";
         return $this->executeStatement($query, [$id], "i");
     }
 }

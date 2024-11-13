@@ -23,6 +23,7 @@ $sushiItems = $sushiItemController->getAllSushiItems();
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Availability</th>
                     <th>Actions</th>
                 </tr>
@@ -34,6 +35,7 @@ $sushiItems = $sushiItemController->getAllSushiItems();
                         <td><?= $item['ItemName'] ?></td>
                         <td><?= $item['Description'] ?></td>
                         <td><?= $item['Price'] ?></td>
+                        <td><?= $item['Category'] ?></td>
                         <td><?= $item['AvailabilityStatus'] ? 'Available' : 'Unavailable' ?></td>
                         <td>
                             <a href="edit _sushi_item.php $item['ItemID'] ?>">Edit</a> |

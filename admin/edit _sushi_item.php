@@ -1,4 +1,5 @@
 <?php
+ob_start(); // Start output buffering
 require_once '../controllers/SushiController.php';
 
 // Check if 'id' parameter is set in the URL
@@ -18,14 +19,16 @@ if (isset($_GET['id'])) {
 
         // Update the sushi item in the database
         $updateSuccess = $sushiItemController->updateSushiItem($itemID, [
-            'name' => $name,
+            'itemname' => $name,  
             'description' => $description,
             'price' => $price,
             'availability' => $availability,
         ]);
 
         if ($updateSuccess) {
-            echo "<script>alert('Sushi item updated successfully.'); window.location.href = 'manage_sushi_items.php';</script>";
+            // Direct PHP redirection
+            header("Location: manage_sushi_item.php");
+            exit();
         } else {
             echo "<script>alert('Failed to update sushi item.');</script>";
         }
@@ -47,16 +50,16 @@ if (isset($_GET['id'])) {
         <h1>Edit Sushi Item</h1>
         <form method="POST">
             <label for="name">Name:</label>
-            <input type="text" name="name" value="<?= $sushiItem['name'] ?>" required><br>
+            <input type="text" name="itemname" value="<?= htmlspecialchars($sushiItem['itemname']) ?>" required><br>
 
             <label for="description">Description:</label>
-            <textarea name="description" required><?= $sushiItem['description'] ?></textarea><br>
+            <textarea name="description" required><?= htmlspecialchars($sushiItem['description']) ?></textarea><br>
 
             <label for="price">Price:</label>
-            <input type="number" name="price" step="0.01" value="<?= $sushiItem['price'] ?>" required><br>
+            <input type="number" name="price" step="0.01" value="<?= htmlspecialchars($sushiItem['price']) ?>" required><br>
 
             <label for="availability">Available:</label>
-            <input type="checkbox" name="availability" <?= $sushiItem['availability'] ? 'checked' : '' ?>><br>
+            <input type="checkbox" name="availabilitystatus" <?= $sushiItem['availability'] ? 'checked' : '' ?>><br>
 
             <input type="submit" value="Update">
         </form>
