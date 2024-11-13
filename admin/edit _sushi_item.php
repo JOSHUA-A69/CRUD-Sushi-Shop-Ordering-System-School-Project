@@ -11,10 +11,10 @@ if (isset($_GET['id'])) {
 
     // Check if the form is submitted
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $name = $_POST['name'];
+        $name = $_POST['itemname'];
         $description = $_POST['description'];
         $price = $_POST['price'];
-        $availability = isset($_POST['availability']) ? 1 : 0;
+        $availability = isset($_POST['availabilitystatus']) ? 1 : 0;
 
         // Update the sushi item in the database
         $updateSuccess = $sushiItemController->updateSushiItem($itemID, [
@@ -41,31 +41,27 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Edit Sushi Item</title>
-    <link rel="stylesheet" href="styles/admin.css">
 </head>
 <body>
-    <div class="admin-container">
+    <?php if ($sushiItem): ?>
         <h1>Edit Sushi Item</h1>
+        <form method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="<?= $sushiItem['name'] ?>" required><br>
 
-        <?php if ($sushiItem): ?>
-            <form method="post" action="">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="<?= $sushiItem['name'] ?>" required>
+            <label for="description">Description:</label>
+            <textarea name="description" required><?= $sushiItem['description'] ?></textarea><br>
 
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required><?= $sushiItem['description'] ?></textarea>
+            <label for="price">Price:</label>
+            <input type="number" name="price" step="0.01" value="<?= $sushiItem['price'] ?>" required><br>
 
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price" value="<?= $sushiItem['price'] ?>" required>
+            <label for="availability">Available:</label>
+            <input type="checkbox" name="availability" <?= $sushiItem['availability'] ? 'checked' : '' ?>><br>
 
-                <label for="availability">Availability:</label>
-                <input type="checkbox" id="availability" name="availability" <?= $sushiItem['availability'] ? 'checked' : '' ?>>
-
-                <button type="submit">Update Item</button>
-            </form>
-        <?php else: ?>
-            <p>Sushi item not found.</p>
-        <?php endif; ?>
-    </div>
+            <input type="submit" value="Update">
+        </form>
+    <?php else: ?>
+        <p>Sushi item not found.</p>
+    <?php endif; ?>
 </body>
 </html>

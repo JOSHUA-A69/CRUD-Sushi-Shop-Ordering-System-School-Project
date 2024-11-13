@@ -30,14 +30,14 @@ $sushiItems = $sushiItemController->getAllSushiItems();
             <tbody>
                 <?php foreach ($sushiItems as $item): ?>
                     <tr>
-                        <td><?= $item['id'] ?></td>
-                        <td><?= $item['name'] ?></td>
-                        <td><?= $item['description'] ?></td>
-                        <td><?= $item['price'] ?></td>
-                        <td><?= $item['availability'] ? 'Available' : 'Unavailable' ?></td>
+                        <td><?= $item['ItemID'] ?></td>
+                        <td><?= $item['ItemName'] ?></td>
+                        <td><?= $item['Description'] ?></td>
+                        <td><?= $item['Price'] ?></td>
+                        <td><?= $item['AvailabilityStatus'] ? 'Available' : 'Unavailable' ?></td>
                         <td>
-                            <a href="edit_sushi_item.php?id=<?= $item['id'] ?>">Edit</a> |
-                            <a href="delete_sushi_item.php?id=<?= $item['id'] ?>">Delete</a>
+                            <a href="edit _sushi_item.php $item['ItemID'] ?>">Edit</a> |
+                            <a href="delete_sushi_item.php?id=<?= $item['ItemID'] ?>">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

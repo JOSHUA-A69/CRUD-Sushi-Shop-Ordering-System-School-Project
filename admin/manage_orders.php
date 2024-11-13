@@ -35,13 +35,13 @@ $orders = $orderController->getOrders();
                             <?php
                             // Display items for the order
                             $items = array_map(function($item) {
-                                return $item['item_name'] . " (x" . $item['item_quantity'] . ")";
+                                return $item['ItemName'] . " (x" . $item['quantity'] . ")";
                             }, $order['items']);
                             echo implode(', ', $items);
                             ?>
                         </td>
-                        <td><?= number_format($order['total_price'], 2) ?></td>  <!-- Format total price -->
-                        <td><?= $order['status'] ?></td>  <!-- Use the correct status field -->
+                        <td><?= number_format($order['TotalPrice'], 2) ?></td>  <!-- Format total price -->
+                        <td><?= $order['OrderStatus'] ?></td>  
                         <td>
                             <a href="edit_order.php?id=<?= $order['orderID'] ?>">Update Status</a>
                         </td>

@@ -34,23 +34,40 @@ class OrderController extends BaseController {
         }
     }
 
-    // Get Orders Method (final version to keep)
     public function getOrders() {
         try {
             Logger::info("Fetching all orders.");
             
-            $orders = $this->orderModel->getAll();  // Fetch orders from the database
-            
-            // Fetch items for each order
-            foreach ($orders as &$order) {
-                $orderItems = $this->orderModel->getItemsForOrder($order['orderID']);  // Retrieve order items by orderID
-                $order['items'] = $orderItems;
-                $order['total_price'] = array_sum(array_map(function($item) {
-                    return $item['item_price'] * $item['item_quantity'];
-                }, $orderItems));  // Calculate total price based on items
+            // Fetch basic order details
+            $orders = $this->orderModel->getAll();
+    
+            // Process each order to add items and calculate the total price
+            $ordersById = [];
+            foreach ($orders as $order) {
+                if (!isset($ordersById[$order['orderID']])) {
+                    // Initialize order details
+                    $ordersById[$order['orderID']] = [
+                        'orderID' => $order['orderID'],
+                        'customerID' => $order['customerID'],
+                        'OrderStatus' => $order['status'],
+                        'items' => [],
+                        'TotalPrice' => 0
+                    ];
+                }
+    
+                // Append each item to the order's items array
+                if (!empty($order['item_name'])) {
+                    $ordersById[$order['orderID']]['items'][] = [
+                        'ItemName' => $order['item_name'],
+                        'quantity' => $order['item_quantity'],
+                        'price' => $order['item_price']
+                    ];
+                    // Calculate the total price for each order
+                    $ordersById[$order['orderID']]['TotalPrice'] += $order['item_quantity'] * $order['item_price'];
+                }
             }
-
-            return $orders;
+    
+            return array_values($ordersById);  // Return as an array
         } catch (Exception $e) {
             Logger::error("Error retrieving orders: " . $e->getMessage());
             return [];
