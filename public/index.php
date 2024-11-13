@@ -5,7 +5,7 @@ session_start();
 require_once '../config/database.php';
 require_once '../lib/Logger.php';
 require_once '../lib/Exceptions.php';
-require_once '../lib/SessionManager.php';
+
 require_once '../lib/BaseModel.php';
 require_once '../lib/BaseController.php';
 

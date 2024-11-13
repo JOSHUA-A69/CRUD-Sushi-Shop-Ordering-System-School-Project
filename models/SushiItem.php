@@ -53,9 +53,12 @@ class SushiItem extends BaseModel {
     }
 
     public function delete($id) {
-        // Update 'id' to the actual primary key field of your 'sushi_item' table
+        // Use 'ItemID' as the correct primary key if that's your database's setup
         $query = "DELETE FROM {$this->table} WHERE ItemID = ?";
-        return $this->executeStatement($query, [$id], "i");
+        $result = $this->executeStatement($query, [$id], "i");
+    
+        // Return true if delete was successful, otherwise false
+        return $result && $this->db->affected_rows > 0;
     }
 }
 ?>

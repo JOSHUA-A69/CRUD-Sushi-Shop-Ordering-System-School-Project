@@ -1,5 +1,6 @@
 <?php
 require_once '../controllers/SushiController.php';
+require_once '../lib/logger.php';
 
 $sushiItemController = new SushiItemController();
 

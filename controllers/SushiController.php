@@ -47,7 +47,17 @@ class SushiItemController extends BaseController {
 
     // Delete sushi item
     public function deleteSushiItem($id) {
-        return $this->sushiItemModel->delete($id);
+        try {
+            if ($this->sushiItemModel->delete($id)) {
+                return true; // Successfully deleted
+            } else {
+                Logger::error("Failed to delete sushi item with ID $id: Item not found or could not be deleted.");
+                return false;
+            }
+        } catch (Exception $e) {
+            Logger::error("Error deleting sushi item with ID $id: " . $e->getMessage());
+            return false;
+        }
     }
 
     // Function to add a new sushi item

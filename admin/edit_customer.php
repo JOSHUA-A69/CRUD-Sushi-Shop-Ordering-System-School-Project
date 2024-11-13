@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="houseNumber" id="houseNumber" value="<?= htmlspecialchars($customer['houseNumber']) ?>"><br>
 
         <input type="submit" value="Update Profile">
+        <a href="manage_customers.php">Back to Customer List</a>
     </form>
 </body>
 </html>
