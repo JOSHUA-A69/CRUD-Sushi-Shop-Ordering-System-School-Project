@@ -1,0 +1,15 @@
+[2024-11-13 09:29:20] INFO: OrderController instantiated.
+[2024-11-13 09:29:20] INFO: Fetching all orders.
+[2024-11-13 09:29:20] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:29:40] INFO: OrderController instantiated.
+[2024-11-13 09:29:40] INFO: Fetching all orders.
+[2024-11-13 09:29:40] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:30:41] INFO: OrderController instantiated.
+[2024-11-13 09:30:41] INFO: Fetching all orders.
+[2024-11-13 09:30:41] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:31:02] INFO: OrderController instantiated.
+[2024-11-13 09:31:02] INFO: Fetching all orders.
+[2024-11-13 09:31:02] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:31:09] INFO: OrderController instantiated.
+[2024-11-13 09:31:09] INFO: Fetching all orders.
+[2024-11-13 09:31:09] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'

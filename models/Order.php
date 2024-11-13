@@ -31,6 +31,18 @@ class Order extends BaseModel {
             throw $e;
         }
     }
+
+    public function getAll() {
+        $query = "SELECT orderID, customerID, items, totalprice, status FROM orders";
+        $result = $this->db->query($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+    
+        return null;
+    }
+    
 }
 
 ?>

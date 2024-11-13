@@ -1,16 +1,23 @@
 <?php
 
 require_once '../config/database.php';
-
 class Logger {
-    public static function error($message) {
-        error_log("[ERROR] " . date('Y-m-d H:i:s') . " - " . $message);
+    // Log messages to a log file with timestamps
+    public static function log($level, $message) {
+        $logFile = __DIR__ . '/app.log'; 
+        $timestamp = date('Y-m-d H:i:s');
+        $logMessage = "[$timestamp] $level: $message" . PHP_EOL;
+        file_put_contents($logFile, $logMessage, FILE_APPEND);
     }
-    
+
+    // Log error messages
+    public static function error($message) {
+        self::log('ERROR', $message);
+    }
+
+    // Log info messages
     public static function info($message) {
-        if (LOG_LEVEL === 'INFO') {
-            error_log("[INFO] " . date('Y-m-d H:i:s') . " - " . $message);
-        }
+        self::log('INFO', $message);
     }
 }
 
