@@ -13,3 +13,58 @@
 [2024-11-13 09:31:09] INFO: OrderController instantiated.
 [2024-11-13 09:31:09] INFO: Fetching all orders.
 [2024-11-13 09:31:09] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:39:44] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-13 09:39:44] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-13 09:39:44] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-13 09:45:51] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-13 09:45:51] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-13 09:45:51] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-13 09:45:56] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-13 09:45:56] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-13 09:45:56] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-13 09:48:05] INFO: OrderController instantiated.
+[2024-11-13 09:48:05] INFO: Fetching all orders.
+[2024-11-13 09:48:05] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:48:15] INFO: OrderController instantiated.
+[2024-11-13 09:48:15] INFO: Fetching all orders.
+[2024-11-13 09:48:15] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:50:23] INFO: OrderController instantiated.
+[2024-11-13 09:50:23] INFO: Fetching all orders.
+[2024-11-13 09:50:23] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:50:25] INFO: OrderController instantiated.
+[2024-11-13 09:50:25] INFO: Fetching all orders.
+[2024-11-13 09:50:25] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:51:48] INFO: OrderController instantiated.
+[2024-11-13 09:51:48] INFO: Fetching all orders.
+[2024-11-13 09:51:48] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 09:51:49] INFO: OrderController instantiated.
+[2024-11-13 09:51:49] INFO: Fetching all orders.
+[2024-11-13 09:51:49] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 10:01:28] INFO: OrderController instantiated.
+[2024-11-13 10:01:28] INFO: Fetching all orders.
+[2024-11-13 10:01:28] ERROR: Error retrieving orders: Unknown column 'items' in 'field list'
+[2024-11-13 10:01:28] INFO: No orders found.
+[2024-11-13 10:04:51] INFO: OrderController instantiated.
+[2024-11-13 10:04:51] INFO: Fetching all orders.
+[2024-11-13 10:04:51] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-13 10:11:42] INFO: OrderController instantiated.
+[2024-11-13 10:11:42] INFO: Fetching all orders.
+[2024-11-13 10:11:42] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-13 10:14:51] INFO: OrderController instantiated.
+[2024-11-13 10:14:51] INFO: Fetching all orders.
+[2024-11-13 10:14:51] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-13 10:14:55] INFO: OrderController instantiated.
+[2024-11-13 10:14:55] INFO: Fetching all orders.
+[2024-11-13 10:14:55] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-13 10:16:14] INFO: OrderController instantiated.
+[2024-11-13 10:16:14] INFO: Fetching all orders.
+[2024-11-13 10:16:14] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-13 10:16:15] INFO: OrderController instantiated.
+[2024-11-13 10:16:15] INFO: Fetching all orders.
+[2024-11-13 10:16:15] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-13 10:16:19] INFO: OrderController instantiated.
+[2024-11-13 10:16:19] INFO: Fetching all orders.
+[2024-11-13 10:16:19] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-13 10:16:50] INFO: OrderController instantiated.
+[2024-11-13 10:16:50] INFO: Fetching all orders.
+[2024-11-13 10:16:50] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist

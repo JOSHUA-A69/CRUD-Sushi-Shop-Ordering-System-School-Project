@@ -31,9 +31,17 @@ $orders = $orderController->getOrders();
                     <tr>
                         <td><?= $order['orderID'] ?></td>
                         <td><?= $order['customerID'] ?></td>
-                        <td><?= implode(', ', json_decode($order['items'], true)) ?></td>
-                        <td><?= $order['total_price'] ?></td>
-                        <td><?= $order['status'] ?></td>
+                        <td>
+                            <?php
+                            // Display items for the order
+                            $items = array_map(function($item) {
+                                return $item['item_name'] . " (x" . $item['item_quantity'] . ")";
+                            }, $order['items']);
+                            echo implode(', ', $items);
+                            ?>
+                        </td>
+                        <td><?= number_format($order['total_price'], 2) ?></td>  <!-- Format total price -->
+                        <td><?= $order['status'] ?></td>  <!-- Use the correct status field -->
                         <td>
                             <a href="edit_order.php?id=<?= $order['orderID'] ?>">Update Status</a>
                         </td>
@@ -44,5 +52,3 @@ $orders = $orderController->getOrders();
     </div>
 </body>
 </html>
-
-
