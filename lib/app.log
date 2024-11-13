@@ -13,3 +13,6 @@
 [2024-11-13 18:04:51] INFO: OrderController instantiated.
 [2024-11-13 18:04:51] INFO: Fetching all orders.
 [2024-11-13 18:04:51] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-13 18:59:59] INFO: OrderController instantiated.
+[2024-11-13 18:59:59] INFO: Fetching all orders.
+[2024-11-13 18:59:59] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist

@@ -44,6 +44,42 @@ class Admin extends BaseModel {
             throw $e;
         }
     }
+ 
+    public function getProfileById($adminId) {
+        try {
+            $result = $this->executeStatement(
+                "SELECT AdminID, Name, Email, ContactNumber, role FROM {$this->table} WHERE AdminId = ?",
+                [$adminId],
+                "i"
+            );
+            
+            $admin = $result->fetch_assoc();
+            return $admin ?: false;  // Return admin data if found, or false if not found
+        } catch (Exception $e) {
+            Logger::error("Get profile failed: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    public function updateProfileById($adminId, $updatedData) {
+        try {
+            // Prepare the SQL statement to update the admin profile
+            $sql = "UPDATE {$this->table} SET name = ?, email = ?, contactNumber = ? WHERE  AdminID = ?";
+            $params = [
+                $updatedData['name'],
+                $updatedData['email'],
+                $updatedData['contactNumber'],
+                $adminId
+            ];
+
+            // Execute the statement
+            return $this->executeStatement($sql, $params, "sssi");
+        } catch (Exception $e) {
+            Logger::error("Update profile failed: " . $e->getMessage());
+            throw $e;
+        }
+    }  
 }
+
 
 ?>

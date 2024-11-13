@@ -43,6 +43,52 @@ class AdminController extends BaseController {
             return $this->respondError('Login failed', 500);
         }
     }
+
+    public function getProfile($adminId) {
+        try {
+            // Validate the admin ID
+            if (!$adminId) {
+                return $this->respondError('Admin ID is required', 400);
+            }
+            
+            // Get the admin profile data
+            $adminProfile = $this->adminModel->getProfileById($adminId);
+            if ($adminProfile) {
+                return $this->respondSuccess($adminProfile, 'Profile retrieved successfully');
+            }
+
+            return $this->respondError('Admin profile not found', 404);
+        } catch (Exception $e) {
+            Logger::error("Get profile error: " . $e->getMessage());
+            return $this->respondError('Internal server error', 500);
+        }
+    }
+
+    public function updateProfile($adminId, $updatedData) {
+        try {
+            // Validate the updated data
+            $this->validateRequest($updatedData, ['name', 'email', 'contactNumber']);
+
+            // Validate the admin ID
+            if (!$adminId) {
+                return $this->respondError('Admin ID is required', 400);
+            }
+
+            // Update the admin profile data
+            $updateSuccess = $this->adminModel->updateProfileById($adminId, $updatedData);
+            if ($updateSuccess) {
+                return $this->respondSuccess([], 'Profile updated successfully');
+            }
+
+            return $this->respondError('Failed to update profile', 500);
+        } catch (ValidationException $e) {
+            return $this->respondError($e->getMessage(), 400);
+        } catch (Exception $e) {
+            Logger::error("Update profile error: " . $e->getMessage());
+            return $this->respondError('Internal server error', 500);
+        }
+    }
+
 }
 
 ?>
