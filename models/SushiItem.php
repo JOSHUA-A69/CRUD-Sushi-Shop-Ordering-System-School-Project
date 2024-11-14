@@ -5,30 +5,34 @@ require_once '../lib/BaseModel.php';
 class SushiItem extends BaseModel {
     protected $table = 'sushi_item';
     protected $allowedFields = ['itemName', 'description', 'price', 
-                                'availabilityStatus', 'category', 'ingredients'];
+                                'availabilityStatus', 'category', 'ingredients'];   
 
-    // Create a new sushi item
-    public function create($data) {
-        try {
-            // Validate the data
-            $validatedData = $this->validateData($data);
-
-            // Ensure field names in the query are consistent with the data
-            $result = $this->executeStatement(
-                "INSERT INTO {$this->table} (itemName, description, price, availabilityStatus, category, ingredients) 
-                 VALUES (?, ?, ?, ?, ?, ?)",
-                array_values($validatedData),
-                "ssdsis" // Ensure correct types for each parameter
-            );
-
-            // Return the last inserted ID
-            return $this->db->insert_id;
-        } catch (Exception $e) {
-            Logger::error("Sushi item creation failed: " . $e->getMessage());
-            throw $e;
-        }
+         //Create new sushi items                       
+         public function create($data) {
+         try {
+        // Prepare the statement
+         $result = $this->executeStatement(
+        "INSERT INTO {$this->table} (itemName, description, price, availabilityStatus, category, ingredients) 
+         VALUES (?, ?, ?, ?, ?, ?)",
+         [
+        $data['itemName'],
+        $data['description'],
+        $data['price'],
+        $data['availabilityStatus'],
+        $data['category'],
+        $data['ingredients']
+      ],
+      "ssdsis" // Ensure correct types for each parameter
+      );
+                                
+     // Return the last inserted ID if successful
+     return $this->db->insert_id;
+      } catch (Exception $e) {
+     Logger::error("Sushi item creation failed: " . $e->getMessage());
+     throw $e;
     }
-
+}                      
+                                
     // Get all sushi items
     public function getAll() {
         $query = "SELECT * FROM {$this->table}";

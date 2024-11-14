@@ -46,3 +46,69 @@
 [2024-11-14 06:53:41] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
 [2024-11-14 06:54:01] ERROR: Failed to delete sushi item with ID 22: Item not found or could not be deleted.
 [2024-11-14 06:55:18] ERROR: Failed to delete sushi item with ID 23: Item not found or could not be deleted.
+[2024-11-14 07:02:22] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 07:02:22] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 07:02:22] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 07:09:56] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 07:09:56] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 07:09:56] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 07:09:58] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 07:09:58] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 07:09:58] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 07:10:08] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 07:10:08] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 07:10:08] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 08:20:55] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 08:20:55] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 08:20:55] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 08:23:15] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 08:23:15] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 08:23:15] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 08:23:35] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 08:23:35] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 08:23:35] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 08:25:04] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 08:25:04] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 08:25:04] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 08:25:29] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 08:25:29] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 08:25:29] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 08:25:33] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 08:25:33] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 08:25:33] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 08:29:47] INFO: OrderController instantiated.
+[2024-11-14 08:29:47] INFO: Fetching all orders.
+[2024-11-14 08:29:47] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-14 08:30:32] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 08:30:59] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 08:32:13] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 08:33:01] INFO: OrderController instantiated.
+[2024-11-14 08:33:01] INFO: Fetching all orders.
+[2024-11-14 08:33:01] ERROR: Error retrieving orders: Table 'sushi_shop.order_items' doesn't exist
+[2024-11-14 08:33:22] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 08:34:12] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 08:34:12] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 08:34:12] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 08:34:46] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 19:16:28] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 19:16:28] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 19:16:28] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 19:20:42] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 19:20:42] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 19:20:42] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 19:21:59] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 19:21:59] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 19:21:59] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 19:27:40] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 19:27:40] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 19:27:40] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 19:46:39] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 19:46:39] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 19:46:39] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 19:56:08] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 19:58:34] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 20:00:26] ERROR: Sushi item creation failed: Column count doesn't match value count at row 1
+[2024-11-14 20:00:26] ERROR: Sushi item creation failed: Column count doesn't match value count at row 1
+[2024-11-14 20:11:29] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 20:13:45] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 20:19:18] ERROR: Sushi item creation failed: All fields are required.

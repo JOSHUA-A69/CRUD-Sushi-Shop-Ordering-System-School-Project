@@ -1,7 +1,7 @@
 <?php
 ob_start();
 require_once '../controllers/SushiController.php';
-require_once '../lib/logger.php';
+
 
 if (isset($_GET['id'])) {
     $itemID = $_GET['id'];

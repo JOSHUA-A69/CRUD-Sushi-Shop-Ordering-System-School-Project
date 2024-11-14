@@ -2,6 +2,7 @@
 // SushiItemController.php
 require_once '../lib/BaseController.php';
 require_once '../models/SushiItem.php';
+require_once '../lib/logger.php';
 class SushiItemController extends BaseController {
     private $sushiItemModel;
     
@@ -64,10 +65,10 @@ class SushiItemController extends BaseController {
     public function addSushiItem($data) {
         try {
             // Ensure consistency with form field names
-            if (empty($data['itemName']) || empty($data['price']) || empty($data['description'])) {
+            if (empty($data['ItemName']) || empty($data['Price']) || empty($data['Description']) || empty($data['Category']) || empty($data['AvailabilityStatus']) || empty($data['Ingredients'])) {
                 throw new Exception("All fields are required.");
             }
-    
+            
             // Pass the data to the model to insert into the database
             $result = $this->sushiItemModel->create($data);
     
@@ -83,8 +84,10 @@ class SushiItemController extends BaseController {
             Logger::error("Sushi item creation failed: " . $e->getMessage());
             return "Error: " . $e->getMessage();
         }
-    }
-    
+    } 
+
 }
+
+
 
 ?>

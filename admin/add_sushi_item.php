@@ -1,6 +1,5 @@
 <?php
 require_once '../controllers/SushiController.php';
-require_once '../lib/logger.php';
 
 $sushiItemController = new SushiItemController();
 
@@ -30,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="admin-container">
         <h1>Add New Sushi Item</h1>
-     <form method="POST" action="add_sushi_item.php">
+        <form method="POST" action="add_sushi_item.php">
     <label for="itemName">Item Name:</label>
     <input type="text" name="itemName" id="itemName" required>
 
@@ -53,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <textarea name="ingredients" id="ingredients" required></textarea>
 
     <button type="submit">Add Sushi Item</button>
-    </form>
+</form>
 
         <a href="manage_sushi.php" class="back-link">Back to Manage Sushi Items</a>
     </div>
