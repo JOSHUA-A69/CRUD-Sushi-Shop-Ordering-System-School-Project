@@ -112,3 +112,23 @@
 [2024-11-14 20:11:29] ERROR: Sushi item creation failed: All fields are required.
 [2024-11-14 20:13:45] ERROR: Sushi item creation failed: All fields are required.
 [2024-11-14 20:19:18] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 21:38:14] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 21:38:14] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 21:38:14] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 21:42:51] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 21:45:26] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-14 21:45:26] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-14 21:45:26] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-14 21:46:19] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 21:52:16] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 21:54:56] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 21:57:11] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 22:02:20] INFO: Received data: {"itemName":"Testing","description":"testing ","price":"0","availabilityStatus":"0","category":"Sushi","ingredients":"testing "}
+[2024-11-14 22:02:20] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-14 22:08:44] INFO: Received data: {"itemName":"Testing","description":"testing ","price":"0","availabilityStatus":"0","category":"testing ","ingredients":"dummy"}
+[2024-11-14 22:08:44] ERROR: Validation failed: One or more fields are empty.
+[2024-11-14 22:08:44] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-15 07:38:46] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-15 07:38:46] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-15 07:38:46] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-15 07:40:20] ERROR: Sushi item creation failed: All fields are required.
