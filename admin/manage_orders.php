@@ -14,12 +14,12 @@ if (isset($_GET['id'])) {
         die("Connection failed: " . $mysqli->connect_error);
     }
 
-    // Retrieve order data
+    // Retrieve order and item data
     $stmt = $mysqli->prepare("
-        SELECT o.orderID, o.customerID, o.totalPrice, o.orderStatus, i.ItemName, oi.quantity
+        SELECT o.orderID, o.customerID, o.totalPrice, o.orderStatus, o.paymentStatus, 
+               o.quantity, s.ItemName
         FROM orders AS o
-        JOIN order_items AS oi ON o.orderID = oi.orderID
-        JOIN sushi_item AS i ON oi.itemID = i.itemID
+        JOIN sushi_item AS s ON o.itemID = s.itemID
         WHERE o.orderID = ?
     ");
 
@@ -27,20 +27,9 @@ if (isset($_GET['id'])) {
         die("Prepare statement failed: " . $mysqli->error);
     }
 
-    // Bind parameters
-    if (!$stmt->bind_param("i", $orderID)) {
-        die("Bind parameter failed: " . $stmt->error);
-    }
-
-    // Execute statement
-    if (!$stmt->execute()) {
-        die("Execute failed: " . $stmt->error);
-    }
-
-    // Bind result variables
-    if (!$stmt->bind_result($orderID, $customerID, $totalPrice, $orderStatus, $itemName, $quantity)) {
-        die("Bind result failed: " . $stmt->error);
-    }
+    $stmt->bind_param("i", $orderID);
+    $stmt->execute();
+    $stmt->bind_result($orderID, $customerID, $totalPrice, $orderStatus, $paymentStatus, $quantity, $itemName);
 
     // Fetch data and store in array for display
     $orderDetails = [];
@@ -50,8 +39,9 @@ if (isset($_GET['id'])) {
             'customerID' => $customerID,
             'totalPrice' => $totalPrice,
             'orderStatus' => $orderStatus,
-            'itemName' => $itemName,
-            'quantity' => $quantity
+            'paymentStatus' => $paymentStatus,
+            'quantity' => $quantity,
+            'itemName' => $itemName
         ];
     }
 
@@ -87,6 +77,7 @@ if (isset($_GET['id'])) {
                         <th>Quantity</th>
                         <th>Total Price</th>
                         <th>Status</th>
+                        <th>Payment Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +89,7 @@ if (isset($_GET['id'])) {
                             <td><?= htmlspecialchars($order['quantity']) ?></td>
                             <td><?= number_format($order['totalPrice'], 2) ?></td>
                             <td><?= htmlspecialchars($order['orderStatus']) ?></td>
+                            <td><?= htmlspecialchars($order['paymentStatus']) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

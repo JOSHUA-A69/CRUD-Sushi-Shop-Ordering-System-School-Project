@@ -1,78 +1,69 @@
 <?php
-// Start output buffering and session if needed
-ob_start();
-
+session_start();
 require_once '../controllers/SushiController.php';
 require_once '../lib/logger.php';
 require_once '../config/database.php';
 
 // Check if item ID is provided
-if (isset($_GET['id'])) {
-    $itemID = $_GET['id'];
-    
-    // Database connection
-    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-    // Check connection
-    if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
-    }
-
-    // Retrieve sushi item data
-    $stmt = $mysqli->prepare("SELECT itemName, description, price, availabilityStatus, category, ingredients FROM sushi_item WHERE itemID = ?");
-    if (!$stmt) {
-        die("Prepare statement failed: " . $mysqli->error);
-    }
-
-    $stmt->bind_param("i", $itemID);
-    $stmt->execute();
-    $stmt->bind_result($itemName, $description, $price, $availabilityStatus, $category, $ingredients);
-    $stmt->fetch();
-    $stmt->close();
-
-    // Check if form is submitted for update
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Prepare the UPDATE statement
-        $stmt = $mysqli->prepare("UPDATE sushi_item SET itemName = ?, description = ?, price = ?, availabilityStatus = ?, category = ?, ingredients = ? WHERE itemID = ?");
-        
-        if (!$stmt) {
-            die("Prepare statement failed: " . $mysqli->error);
-        }
-
-        // Bind parameters
-        $stmt->bind_param("ssdissi", 
-            $_POST['itemName'], 
-            $_POST['description'], 
-            $_POST['price'], 
-            $_POST['availabilityStatus'], 
-            $_POST['category'], 
-            $_POST['ingredients'], 
-            $itemID
-        );
-
-        // Execute and check if update was successful
-        if ($stmt->execute()) {
-            // Clear the output buffer and redirect after successful update
-            ob_end_clean();
-            header("Location: ./manage_sushi.php?message=updated");
-            exit;
-        } else {
-            echo "<p>Error: " . $stmt->error . "</p>";
-        }
-
-        // Close the statement
-        $stmt->close();
-    }
-
-    // Close the database connection
-    $mysqli->close();
-} else {
+if (!isset($_GET['id'])) {
     echo "<p>Sushi item ID not specified.</p>";
     exit;
 }
 
-// End output buffering if no redirect happens
-ob_end_flush();
+$itemID = $_GET['id'];
+
+// Database connection
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+// Retrieve sushi item data
+$stmt = $mysqli->prepare("SELECT itemName, description, price, availabilityStatus, category, ingredients FROM sushi_item WHERE itemID = ?");
+if (!$stmt) {
+    die("Prepare statement failed: " . $mysqli->error);
+}
+$stmt->bind_param("i", $itemID);
+$stmt->execute();
+$stmt->bind_result($itemName, $description, $price, $availabilityStatus, $category, $ingredients);
+$stmt->fetch();
+$stmt->close();
+
+// Check if form is submitted for update
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Prepare the UPDATE statement
+    $stmt = $mysqli->prepare("UPDATE sushi_item SET itemName = ?, description = ?, price = ?, availabilityStatus = ?, category = ?, ingredients = ? WHERE itemID = ?");
+    
+    if (!$stmt) {
+        die("Prepare statement failed: " . $mysqli->error);
+    }
+
+    // Bind parameters
+    $stmt->bind_param("ssdissi", 
+        $_POST['itemName'], 
+        $_POST['description'], 
+        $_POST['price'], 
+        $_POST['availabilityStatus'], 
+        $_POST['category'], 
+        $_POST['ingredients'], 
+        $itemID
+    );
+
+    // Execute and check if update was successful
+    if ($stmt->execute()) {
+        echo "<p>Update successful. Redirecting to Manage Sushi page...</p>";
+        echo '<meta http-equiv="refresh" content="2;url=./manage_sushi.php?message=updated">';
+        exit;
+    } else {
+        die("Update failed: " . $stmt->error);
+    }
+    
+}
+
+// Close the database connection
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>

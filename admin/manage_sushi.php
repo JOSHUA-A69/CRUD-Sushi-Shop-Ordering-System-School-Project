@@ -38,7 +38,7 @@ $sushiItems = $sushiItemController->getAllSushiItems();
                         <td><?= $item['Category'] ?></td>
                         <td><?= $item['AvailabilityStatus'] ? 'Available' : 'Unavailable' ?></td>
                         <td>
-                            <a href="edit _sushi_item.php?id=<?$item['ItemID'] ?>">Edit</a> |
+                            <a href="edit _sushi_item.php?id=<?= $item['ItemID'] ?>">Edit</a> |
                             <a href="delete_sushi_item.php?id=<?= $item['ItemID'] ?>">Delete</a>
                         </td>
                     </tr>
