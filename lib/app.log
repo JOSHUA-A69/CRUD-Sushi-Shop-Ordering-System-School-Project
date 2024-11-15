@@ -140,3 +140,9 @@
 [2024-11-15 08:02:38] ERROR: Sushi item creation failed: All fields are required.
 [2024-11-15 08:03:05] INFO: Received data for new sushi item: null
 [2024-11-15 08:03:05] ERROR: Sushi item creation failed: All fields are required.
+[2024-11-15 08:16:03] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-15 08:16:03] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-15 08:16:03] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-15 08:26:01] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-15 08:26:01] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-15 08:26:01] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
