@@ -1,0 +1,100 @@
+  /* Main styles */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    color: white;
+}
+
+/* Background image */
+.background-image {
+    background-image: url('../images/SushiBG.jpg'); 
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Overlay */
+.overlay {
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Navigation bar */
+.navbar {
+    background-color: transparent !important;
+    z-index: 2;
+    display: flex;
+    justify-content: center; /* Center the nav links */
+    padding-top: 1rem;
+}
+
+.navbar-brand {
+    display: none; /* Hide the brand name if not needed */
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-right: 1.5rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #DEB887 !important; /* Burlywood color on hover */
+}
+
+
+/* Header content */
+.header-content {
+    position: absolute;
+    z-index: 3;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 1rem;
+}
+
+.header-content h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.header-content p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 1rem;
+        margin-right: 1rem;
+    }
+    .header-content h1 {
+        font-size: 2.5rem;
+    }
+    .header-content p {
+        font-size: 1.2rem;
+    }
+}

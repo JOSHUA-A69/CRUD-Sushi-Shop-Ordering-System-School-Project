@@ -33,14 +33,34 @@ if (empty($_SESSION[CSRF_TOKEN_NAME])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Divine Sushi Shop!</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/welcome.css">   
 </head>
 <body>
-<h1>Welcome to Divine Sushi Shop</h1>
-<p>Discover the finest sushi items crafted with passion and served fresh.</p>
-<p><a href="../auth/signup_customer.php">Customer Signup</a> | <a href="../auth/signup_admin.php">Admin Signup</a></p>
-<p><a href="../auth/login.php">Customer Login</a> | <a href="../auth/login.php">Admin Login</a></p>
+    <!-- Background image and overlay -->
+    <div class="background-image"></div>
+    <div class="overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="navbar-nav">
+            <a href="../auth/signup_customer.php" class="nav-link">Customer Signup</a>
+            <a href="../auth/login.php" class="nav-link">Customer Login</a>
+            <a href="../auth/signup_admin.php" class="nav-link">Admin Signup</a>
+            <a href="../auth/login.php" class="nav-link">Admin Login</a>
+        </div>
+    </nav>
+
+    <!-- Header Content -->
+    <div class="header-content">
+        <h1>WELCOME TO DIVINE SUSHI</h1>
+        <p>Discover the finest sushi crafted with passion and served fresh.</p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
