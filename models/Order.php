@@ -47,20 +47,33 @@ class Order extends BaseModel {
     }
 
     public function getAll() {
-        // Join orders with order_items to get the full details
-        $query = "SELECT o.orderID, o.customerID, o.status, o.orderDate, 
-                  oi.item_name, oi.item_quantity, oi.item_price
-                  FROM {$this->table} o
-                  LEFT JOIN order_items oi ON o.orderID = oi.orderID";
-        
-        $result = $this->db->query($query);
+        try {
+            // Fetch order details along with associated items
+            $query = "SELECT o.orderID, o.customerID, o.status, o.orderDate, 
+                             oi.item_name, oi.item_quantity, oi.item_price
+                      FROM {$this->table} o
+                      LEFT JOIN order_items oi ON o.orderID = oi.orderID";
     
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $result = $this->db->query($query);
+    
+            if (!$result) {
+                Logger::error("Error executing query in getAll: " . $this->db->error);
+                return [];
+            }
+    
+            // Check if any data was returned
+            if ($result->num_rows > 0) {
+                return $result->fetch_all(MYSQLI_ASSOC);
+            } else {
+                Logger::info("No orders found in the database.");
+                return [];
+            }
+        } catch (Exception $e) {
+            Logger::error("Exception in getAll: " . $e->getMessage());
+            return [];
         }
-    
-        return [];
     }
+    
 
     public function getItemsForOrder($orderID) {
         $query = "SELECT orderID, customerID, status FROM Orders WHERE orderID = ?";

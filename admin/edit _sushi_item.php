@@ -1,5 +1,5 @@
 <?php
-// Start output buffering
+// Start output buffering and session if needed
 ob_start();
 
 require_once '../controllers/SushiController.php';
@@ -52,8 +52,9 @@ if (isset($_GET['id'])) {
 
         // Execute and check if update was successful
         if ($stmt->execute()) {
-            // Redirect after successful update
-            header("Location: manage_sushi.php?message=updated");
+            // Clear the output buffer and redirect after successful update
+            ob_end_clean();
+            header("Location: ./manage_sushi.php?message=updated");
             exit;
         } else {
             echo "<p>Error: " . $stmt->error . "</p>";
@@ -70,6 +71,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 
+// End output buffering if no redirect happens
 ob_end_flush();
 ?>
 

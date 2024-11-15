@@ -40,12 +40,16 @@ class OrderController extends BaseController {
             
             // Fetch basic order details
             $orders = $this->orderModel->getAll();
-    
-            // Process each order to add items and calculate the total price
+            
+            // Debug output for verification
+            echo "<pre>";
+            print_r($orders);  // Output raw data fetched
+            echo "</pre>";
+            
+            // Process fetched data to group items per order
             $ordersById = [];
             foreach ($orders as $order) {
                 if (!isset($ordersById[$order['orderID']])) {
-                    // Initialize order details
                     $ordersById[$order['orderID']] = [
                         'orderID' => $order['orderID'],
                         'customerID' => $order['customerID'],
@@ -55,22 +59,21 @@ class OrderController extends BaseController {
                     ];
                 }
     
-                // Append each item to the order's items array
                 if (!empty($order['item_name'])) {
                     $ordersById[$order['orderID']]['items'][] = [
                         'ItemName' => $order['item_name'],
                         'quantity' => $order['item_quantity'],
                         'price' => $order['item_price']
                     ];
-                    // Calculate the total price for each order
                     $ordersById[$order['orderID']]['TotalPrice'] += $order['item_quantity'] * $order['item_price'];
                 }
             }
     
-            return array_values($ordersById);  // Return as an array
+            return array_values($ordersById);  
         } catch (Exception $e) {
             Logger::error("Error retrieving orders: " . $e->getMessage());
             return [];
         }
     }
+    
 }
