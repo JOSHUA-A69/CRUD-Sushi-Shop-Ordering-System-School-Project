@@ -9,29 +9,32 @@ class SushiItem extends BaseModel {
 
          //Create new sushi items                       
          public function create($data) {
-         try {
-        // Prepare the statement
-         $result = $this->executeStatement(
-        "INSERT INTO {$this->table} (itemName, description, price, availabilityStatus, category, ingredients) 
-         VALUES (?, ?, ?, ?, ?, ?)",
-         [
-        $data['itemName'],
-        $data['description'],
-        $data['price'],
-        $data['availabilityStatus'],
-        $data['category'],
-        $data['ingredients']
-      ],
-      "ssdsis" // Ensure correct types for each parameter
-      );
-                                
-     // Return the last inserted ID if successful
-     return $this->db->insert_id;
-      } catch (Exception $e) {
-     Logger::error("Sushi item creation failed: " . $e->getMessage());
-     throw $e;
-    }
-}                      
+            $stmt = $this->db->prepare("INSERT INTO sushi_items (itemName, description, price, availabilityStatus, category, ingredients) VALUES (?, ?, ?, ?, ?, ?)");
+            if (!$stmt) {
+                Logger::error("Prepare statement failed: " . $this->db->error);
+                return false;
+            }
+        
+            // Bind parameters
+            $stmt->bind_param(
+                "ssdiss",
+                $data['itemName'],
+                $data['description'],
+                $data['price'],
+                $data['availabilityStatus'],
+                $data['category'],
+                $data['ingredients']
+            );
+        
+            // Execute the statement
+            if ($stmt->execute()) {
+                return $this->db->insert_id;
+            } else {
+                Logger::error("Database execution failed: " . $stmt->error);
+                return false;
+            }
+        }
+                          
                                 
     // Get all sushi items
     public function getAll() {

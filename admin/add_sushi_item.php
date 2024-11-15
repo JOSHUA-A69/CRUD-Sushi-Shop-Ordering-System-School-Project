@@ -1,29 +1,47 @@
 <?php
 require_once '../controllers/SushiController.php';
 require_once '../lib/logger.php';
+require_once '../config/database.php';
 
 $sushiItemController = new SushiItemController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $newSushiData = [
-        'itemName' => $_POST['itemName'],
-        'description' => $_POST['description'],
-        'price' => $_POST['price'],
-        'availabilityStatus' => $_POST['availabilityStatus'],
-        'category' => $_POST['category'],
-        'ingredients' => $_POST['ingredients']
-    ];
+    // Direct database connection for testing purposes
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-    // Try adding the sushi item
-    $result = $sushiItemController->addSushiItem($newSushiData);
-    
-    // Check result and redirect accordingly
-    if ($result === true) {
-        header("Location: manage_sushi.php?success=1");
-    } else {
-        echo "<p class='error'>Error: " . $result . "</p>";
+    // Check connection
+    if ($mysqli->connect_error) {
+        die("Connection failed: " . $mysqli->connect_error);
     }
+
+    // Prepare test data
+    $stmt = $mysqli->prepare("INSERT INTO sushi_item (itemName, description, price, availabilityStatus, category, ingredients) VALUES (?, ?, ?, ?, ?, ?)");
+    if (!$stmt) {
+        die("Prepare statement failed: " . $mysqli->error);
+    }
+
+    // Bind parameters
+    $stmt->bind_param("ssdiss", 
+        $_POST['itemName'],
+        $_POST['description'],
+        $_POST['price'],
+        $_POST['availabilityStatus'],
+        $_POST['category'],
+        $_POST['ingredients']
+    );
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        echo "<p>Sushi item added successfully.</p>";
+    } else {
+        echo "<p>Error: " . $stmt->error . "</p>";
+    }
+
+    // Close statement and connection
+    $stmt->close();
+    $mysqli->close();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

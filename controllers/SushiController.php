@@ -41,6 +41,7 @@ class SushiItemController extends BaseController {
    // Function to add a new sushi item
    public function addSushiItem($data) {
     try {
+        Logger::info("Received data for new sushi item: " . json_encode($data));
         // Ensure consistency with form field names
         if (empty($data['ItemName']) || empty($data['Price']) || empty($data['Description']) || empty($data['Category']) || empty($data['AvailabilityStatus']) || empty($data['Ingredients'])){
             throw new Exception("All fields are required.");
