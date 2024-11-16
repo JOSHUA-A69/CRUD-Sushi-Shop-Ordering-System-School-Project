@@ -58,6 +58,11 @@ if (empty($_SESSION[CSRF_TOKEN_NAME])) {
         <p>Discover the finest sushi crafted with passion and served fresh.</p>
     </div>
 
+    <footer class="footer">
+    <p>&copy; 2024 Divine Sushi | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+</footer>
+
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

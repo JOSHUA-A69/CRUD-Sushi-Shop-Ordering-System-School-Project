@@ -34,7 +34,7 @@
 
 /* Navigation bar */
 .navbar {
-    background-color: transparent !important;
+    background-color: rgba(0, 0, 0, 0.3) !important; /* Dark background with opacity */
     z-index: 2;
     display: flex;
     justify-content: center; /* Center the nav links */
@@ -84,6 +84,29 @@
     font-weight: 300;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.3); /* Lighter dark background with opacity */
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    color: burlywood; /* Hover color for footer links */
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
