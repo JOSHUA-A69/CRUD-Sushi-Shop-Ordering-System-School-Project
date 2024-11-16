@@ -102,7 +102,6 @@ ADD INDEX idx_status (availabilityStatus);*/
 --Proper Naming
 -- Orders table
 ALTER TABLE orders
-ADD COLUMN date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 ADD COLUMN last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ADD INDEX idx_orders_customerID (customerID),
 ADD INDEX idx_orders_status (OrderStatus);

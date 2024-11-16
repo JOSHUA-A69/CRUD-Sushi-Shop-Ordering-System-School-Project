@@ -2,7 +2,6 @@
 // Start output buffering
 ob_start();
 
-require_once '../controllers/SushiController.php';
 require_once '../lib/logger.php';
 require_once '../config/database.php';
 

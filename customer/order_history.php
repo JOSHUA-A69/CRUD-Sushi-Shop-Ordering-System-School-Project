@@ -20,11 +20,11 @@ if ($mysqli->connect_error) {
 
 // Prepare the query to fetch order history with item details
 $query = "
-    SELECT o.orderID, o.date_created, o.orderStatus, s.ItemName 
+    SELECT o.orderID, o.OrderTime, o.orderStatus, s.ItemName 
     FROM orders AS o
     JOIN sushi_item AS s ON o.itemID = s.itemID
     WHERE o.customerID = ?
-    ORDER BY o.date_created DESC
+    ORDER BY o.OrderTime DESC
 ";
 
 // Prepare and execute the statement
@@ -51,7 +51,7 @@ $result = $stmt->get_result();
                 <div class="order-item">
                     <p><strong>Order ID:</strong> <?php echo htmlspecialchars($row['orderID']); ?></p>
                     <p><strong>Item:</strong> <?php echo htmlspecialchars($row['ItemName']); ?></p>
-                    <p><strong>Date:</strong> <?php echo htmlspecialchars($row['date_created']); ?></p>
+                    <p><strong>Date:</strong> <?php echo htmlspecialchars($row['OrderTime']); ?></p>
                     <p><strong>Status:</strong> <?php echo htmlspecialchars($row['orderStatus']); ?></p>
                 </div>
             <?php endwhile; ?>
