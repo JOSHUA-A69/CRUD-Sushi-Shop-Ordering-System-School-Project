@@ -50,11 +50,12 @@ if (isset($_GET['id'])) {
         $newOrderStatus = $_POST['orderStatus'] ?? $order['orderStatus'];
         $newPaymentStatus = $_POST['paymentStatus'] ?? $order['paymentStatus'];
         $newQuantity = intval($_POST['quantity'] ?? $order['quantity']);
+        $newTotalPrice = floatval($_POST['totalPrice'] ?? $order['totalPrice']); // New field
 
         // Update order in the database
         $updateStmt = $mysqli->prepare("
             UPDATE orders 
-            SET orderStatus = ?, paymentStatus = ?, quantity = ?
+            SET orderStatus = ?, paymentStatus = ?, quantity = ?, totalPrice = ?
             WHERE orderID = ?
         ");
 
@@ -62,7 +63,7 @@ if (isset($_GET['id'])) {
             die("Prepare statement failed: " . $mysqli->error);
         }
 
-        $updateStmt->bind_param("ssii", $newOrderStatus, $newPaymentStatus, $newQuantity, $orderID);
+        $updateStmt->bind_param("ssidi", $newOrderStatus, $newPaymentStatus, $newQuantity, $newTotalPrice, $orderID);
 
         if ($updateStmt->execute()) {
             $successMessage = "Order updated successfully!";
@@ -70,6 +71,7 @@ if (isset($_GET['id'])) {
             $order['orderStatus'] = $newOrderStatus;
             $order['paymentStatus'] = $newPaymentStatus;
             $order['quantity'] = $newQuantity;
+            $order['totalPrice'] = $newTotalPrice;
         } else {
             $errorMessage = "Failed to update the order. Please try again.";
         }
@@ -120,6 +122,9 @@ if (isset($_GET['id'])) {
 
                 <label for="quantity">Quantity:</label>
                 <input type="number" name="quantity" id="quantity" value="<?= htmlspecialchars($order['quantity']) ?>" required>
+
+                <label for="totalPrice">Total Price:</label>
+                <input type="number" step="0.01" name="totalPrice" id="totalPrice" value="<?= htmlspecialchars($order['totalPrice']) ?>" required>
 
                 <button type="submit" class="btn">Update Order</button>
             </form>
