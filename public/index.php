@@ -27,6 +27,7 @@ if (empty($_SESSION[CSRF_TOKEN_NAME])) {
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

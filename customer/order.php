@@ -22,7 +22,7 @@ $item = $stmt->get_result()->fetch_assoc();
 </head>
 <body>
     <h1>Order: <?php echo htmlspecialchars($item['itemName']); ?></h1>
-    <form method="POST" action="place_order.php">
+    <form method="POST" action="order.php">
         <input type="hidden" name="itemID" value="<?php echo $itemID; ?>">
         <label for="customerName">Name:</label>
         <input type="text" name="customerName" id="customerName" required>
