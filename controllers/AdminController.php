@@ -50,36 +50,43 @@ class AdminController extends BaseController {
             if (!$adminId) {
                 return $this->respondError('Admin ID is required', 400);
             }
-            
-            // Get the admin profile data
-            $adminProfile = $this->adminModel->getProfileById($adminId);
+    
+            // Fetch the admin profile
+            $adminProfile = $this->adminModel->getProfileById($adminId); // Fetch username, role, etc.
             if ($adminProfile) {
                 return $this->respondSuccess($adminProfile, 'Profile retrieved successfully');
             }
-
+    
             return $this->respondError('Admin profile not found', 404);
         } catch (Exception $e) {
             Logger::error("Get profile error: " . $e->getMessage());
             return $this->respondError('Internal server error', 500);
         }
     }
+    
 
     public function updateProfile($adminId, $updatedData) {
         try {
-            // Validate the updated data
-            $this->validateRequest($updatedData, ['name', 'email', 'contactNumber']);
-
+            // Validate updated data
+            $requiredFields = ['name', 'email', 'contactNumber', 'username', 'role'];
+            $this->validateRequest($updatedData, $requiredFields);
+    
+            // Check if a password update is included
+            if (!empty($updatedData['password'])) {
+                $updatedData['password'] = password_hash($updatedData['password'], PASSWORD_DEFAULT); // Hash the new password
+            }
+    
             // Validate the admin ID
             if (!$adminId) {
                 return $this->respondError('Admin ID is required', 400);
             }
-
-            // Update the admin profile data
+    
+            // Update admin profile
             $updateSuccess = $this->adminModel->updateProfileById($adminId, $updatedData);
             if ($updateSuccess) {
                 return $this->respondSuccess([], 'Profile updated successfully');
             }
-
+    
             return $this->respondError('Failed to update profile', 500);
         } catch (ValidationException $e) {
             return $this->respondError($e->getMessage(), 400);
@@ -88,7 +95,7 @@ class AdminController extends BaseController {
             return $this->respondError('Internal server error', 500);
         }
     }
-
+    
 }
 
 ?>

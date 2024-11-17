@@ -44,41 +44,63 @@ class Admin extends BaseModel {
             throw $e;
         }
     }
- 
+
     public function getProfileById($adminId) {
         try {
+            // Query to fetch admin details, including username and password
             $result = $this->executeStatement(
-                "SELECT AdminID, Name, Email, ContactNumber, role FROM {$this->table} WHERE AdminId = ?",
+                "SELECT AdminID, Name, Email, ContactNumber, Username, Password, Role 
+                 FROM {$this->table} 
+                 WHERE AdminID = ?",
                 [$adminId],
                 "i"
             );
-            
+    
+            // Fetch and return the admin's profile data
             $admin = $result->fetch_assoc();
-            return $admin ?: false;  // Return admin data if found, or false if not found
+            return $admin ?: false; // Return admin data if found, or false if not found
         } catch (Exception $e) {
             Logger::error("Get profile failed: " . $e->getMessage());
-            throw $e;
+            throw $e; // Re-throw the exception to handle it in the controller
         }
     }
-
+    
     public function updateProfileById($adminId, $updatedData) {
         try {
-            // Prepare the SQL statement to update the admin profile
-            $sql = "UPDATE {$this->table} SET name = ?, email = ?, contactNumber = ? WHERE  AdminID = ?";
+            // Start the base SQL query
+            $sql = "UPDATE {$this->table} 
+                    SET name = ?, email = ?, contactNumber = ?, username = ?, role = ?";
+    
+            // Initialize parameters and types for binding
             $params = [
                 $updatedData['name'],
                 $updatedData['email'],
                 $updatedData['contactNumber'],
-                $adminId
+                $updatedData['username'],
+                $updatedData['role']
             ];
-
+            $types = "sssss"; // Corresponding parameter types for binding
+    
+            // Check if a password is included and append it to the query
+            if (!empty($updatedData['password'])) {
+                $sql .= ", password = ?";
+                $params[] = $updatedData['password']; // Add the hashed password
+                $types .= "s"; // Add the parameter type for the password
+            }
+    
+            // Append the WHERE clause
+            $sql .= " WHERE AdminID = ?";
+            $params[] = $adminId; // Add the admin ID to the parameters
+            $types .= "i"; // Add the parameter type for the admin ID
+    
             // Execute the statement
-            return $this->executeStatement($sql, $params, "sssi");
+            return $this->executeStatement($sql, $params, $types);
         } catch (Exception $e) {
             Logger::error("Update profile failed: " . $e->getMessage());
-            throw $e;
+            throw $e; // Re-throw the exception to be handled by the controller
         }
-    }  
+    }
+    
 }
 
 
