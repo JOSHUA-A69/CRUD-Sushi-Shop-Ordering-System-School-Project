@@ -41,6 +41,7 @@ $stmt->close();
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Sanitize and validate input
     $itemName = htmlspecialchars(trim($_POST['itemName']));
     $description = htmlspecialchars(trim($_POST['description']));
     $price = floatval($_POST['price']);
@@ -48,13 +49,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = htmlspecialchars(trim($_POST['category']));
     $ingredients = htmlspecialchars(trim($_POST['ingredients']));
 
+    // Prepare and execute update query
     $stmt = $mysqli->prepare("UPDATE sushi_item SET itemName = ?, description = ?, price = ?, availabilityStatus = ?, category = ?, ingredients = ? WHERE itemID = ?");
     $stmt->bind_param("ssdissi", $itemName, $description, $price, $availabilityStatus, $category, $ingredients, $itemID);
 
     if ($stmt->execute()) {
+        // Successful update
         header("Location: edit_sushi_item.php?id=" . urlencode($itemID) . "&message=updated");
         exit();
     } else {
+        // Log and display error if update fails
         error_log("Update failed: " . $stmt->error);
         echo "Update failed: " . $stmt->error;
     }
@@ -69,12 +73,13 @@ ob_end_flush();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Sushi Item</title>
     <link rel="stylesheet" href="styles/admin.css">
 </head>
 <body>
     <div class="admin-container">
-    <h1>Edit Sushi Item</h1>
+        <h1>Edit Sushi Item</h1>
         
         <!-- Success message display -->
         <?php if (isset($_GET['message']) && $_GET['message'] === 'updated'): ?>

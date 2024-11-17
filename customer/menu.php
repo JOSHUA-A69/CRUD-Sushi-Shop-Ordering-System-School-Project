@@ -19,10 +19,20 @@ $sushiItems = $sushiItemController->getAllSushiItems();
         <?php if (!empty($sushiItems)): ?>
             <?php foreach ($sushiItems as $row): ?>
                 <div class="menu-item">
-                    <h2><?php echo htmlspecialchars($row['ItemName']); ?></h2>
-                    <p><?php echo htmlspecialchars($row['Description']); ?></p>
-                    <p>Price: $<?php echo number_format($row['Price'], 2); ?></p>
-                    <a href="order.php?id=<?php echo $row['itemID']; ?>" class="order-btn">Order Now</a>
+                    <h2>
+                        <?php echo !empty($row['ItemName']) ? htmlspecialchars($row['ItemName']) : 'No Name Available'; ?>
+                    </h2>
+                    <p>
+                        <?php echo !empty($row['Description']) ? htmlspecialchars($row['Description']) : 'No Description Available'; ?>
+                    </p>
+                    <p>
+                        Price: $
+                        <?php echo isset($row['Price']) ? number_format((float)$row['Price'], 2) : '0.00'; ?>
+                    </p>
+                    <a href="order.php?id=<?php echo isset($row['ItemID']) ? htmlspecialchars($row['ItemID']) : ''; ?>" 
+                       class="order-btn">
+                        Order Now
+                    </a>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
