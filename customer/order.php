@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "<p>Order placed successfully!</p>";
-        echo '<a href="menu.php">Back to Menu</a>';
+        echo '<a href="index.php">Back to Dashboard</a>';
     } else {
         echo "<p>Failed to place order. Please try again later.</p>";
         error_log("Order Insert Error: " . $stmt->error);
