@@ -1,4 +1,6 @@
 <?php
+session_start();  // Ensure the session is started at the top of the file
+
 require_once '../config/database.php';
 
 // Retrieve item details
@@ -8,6 +10,12 @@ if (!$itemID) {
 }
 
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+// Check if the customer is logged in
+$customerID = $_SESSION['customerID'] ?? null;
+if (!$customerID) {
+    die("Invalid CustomerID. Please log in or register.");
+}
 
 $stmt = $mysqli->prepare("SELECT * FROM sushi_item WHERE itemID = ?");
 $stmt->bind_param("i", $itemID);
@@ -20,7 +28,6 @@ if (!$item) {
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $customerID = intval($_POST['customerID']); // Assuming the user is logged in
     $quantity = intval($_POST['quantity']);
 
     if ($quantity <= 0) {
@@ -43,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p>Failed to place order. Please try again later.</p>";
         error_log("Order Insert Error: " . $stmt->error);
     }
+
     $stmt->close();
     $mysqli->close();
     exit();
