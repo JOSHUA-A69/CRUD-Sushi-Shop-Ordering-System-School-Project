@@ -18,9 +18,9 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Prepare the query to fetch order history with item details
+// Prepare the query to fetch order history with feedback
 $query = "
-    SELECT o.orderID, o.OrderTime, o.orderStatus, s.ItemName 
+    SELECT o.orderID, o.OrderTime, o.orderStatus, s.ItemName, o.Feedback
     FROM orders AS o
     JOIN sushi_item AS s ON o.itemID = s.itemID
     WHERE o.customerID = ?
@@ -53,6 +53,18 @@ $result = $stmt->get_result();
                     <p><strong>Item:</strong> <?php echo htmlspecialchars($row['ItemName']); ?></p>
                     <p><strong>Date:</strong> <?php echo htmlspecialchars($row['OrderTime']); ?></p>
                     <p><strong>Status:</strong> <?php echo htmlspecialchars($row['orderStatus']); ?></p>
+                    
+                    <!-- Display feedback if it exists -->
+                    <?php if (!empty($row['Feedback'])): ?>
+                        <p><strong>Your Feedback:</strong> <?php echo htmlspecialchars($row['Feedback']); ?></p>
+                    <?php else: ?>
+                        <!-- Feedback form -->
+                        <form action="submit_feedback.php" method="POST" class="feedback-form">
+                            <input type="hidden" name="orderID" value="<?php echo htmlspecialchars($row['orderID']); ?>">
+                            <textarea name="feedback" placeholder="Leave your feedback here..." required></textarea>
+                            <button type="submit" class="btn">Submit Feedback</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
