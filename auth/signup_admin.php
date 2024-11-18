@@ -84,45 +84,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Register</title>
-    <style>
-        .error { color: red; font-size: 14px; }
-        .success { color: green; font-size: 14px; }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/auth.css">
 </head>
 <body>
-    <h2>Admin Registration</h2>
-    <form action="" method="POST">
-        <input type="text" name="name" placeholder="Name" value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
-        <span class="error"><?php echo $nameError; ?></span><br>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container">
+            <h2 class="text-center mb-4">Admin Registration</h2>
+            
+            <?php if (!empty($successMessage)) : ?>
+                <p class="success text-center"><?php echo $successMessage; ?></p>
+            <?php endif; ?>
 
-        <input type="email" name="email" placeholder="Email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
-        <span class="error"><?php echo $emailError; ?></span><br>
+            <form action="" method="POST">
+                <!-- Name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
+                    <span class="error"><?php echo $nameError ?? ''; ?></span>
+                </div>
 
-        <input type="text" name="username" placeholder="Username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>">
-        <span class="error"><?php echo $usernameError; ?></span><br>
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                    <span class="error"><?php echo $emailError ?? ''; ?></span>
+                </div>
 
-        <input type="text" name="role" placeholder="Role" value="<?php echo isset($role) ? htmlspecialchars($role) : ''; ?>">
-        <span class="error"><?php echo $roleError; ?></span><br>
+                <!-- Username -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>">
+                    <span class="error"><?php echo $usernameError ?? ''; ?></span>
+                </div>
 
-        <input type="text" name="contactNumber" placeholder="Contact Number" value="<?php echo isset($contactNumber) ? htmlspecialchars($contactNumber) : ''; ?>">
-        <span class="error"><?php echo $contactNumberError; ?></span><br>
+                <!-- Role -->
+                <div class="mb-3">
+                    <label for="role" class="form-label">Role</label>
+                    <input type="text" class="form-control" id="role" name="role" placeholder="Role" value="<?php echo isset($role) ? htmlspecialchars($role) : ''; ?>">
+                    <span class="error"><?php echo $roleError ?? ''; ?></span>
+                </div>
 
-        <input type="password" name="password" placeholder="Password">
-        <span class="error"><?php echo $passwordError; ?></span><br>
+                <!-- Contact Number -->
+                <div class="mb-3">
+                    <label for="contactNumber" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Contact Number" value="<?php echo isset($contactNumber) ? htmlspecialchars($contactNumber) : ''; ?>">
+                    <span class="error"><?php echo $contactNumberError ?? ''; ?></span>
+                </div>
 
-        <?php if ($successMessage): ?>
-            <p class="success"><?php echo $successMessage; ?></p>
-        <?php endif; ?>
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <span class="error"><?php echo $passwordError ?? ''; ?></span>
+                </div>
 
-        <button type="submit">Signup</button>
-       <button><a href="../public/index.php">Go back to options</a></button>
-    </form>
+                <!-- Buttons -->
+                <button type="submit" class="btn btn-primary w-100 mb-2">Signup</button>
+                <a href="../public/index.php" class="btn btn-secondary w-100">Go back to options</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

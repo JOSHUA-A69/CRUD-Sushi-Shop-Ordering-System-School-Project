@@ -112,3 +112,5 @@ ADD COLUMN date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 ADD COLUMN last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ADD INDEX idx_sushi_item_category (category),
 ADD INDEX idx_sushi_item_availability (availabilityStatus);
+
+ALTER TABLE orders MODIFY COLUMN orderStatus ENUM('Pending', 'Preparing', 'Completed', 'Cancelled');

@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sssssssis", $firstName, $middleInitial, $lastName, $email, $phoneNumber, $cityTown, $street, $houseNumber, $hashedPassword);
 
         if ($stmt->execute()) {
-            $successMessage = "Customer registration successful! You can now log in.";
+            $successMessage = "Customer registration successful!";
         } else {
             $errors['database'] = "Database error: " . $stmt->error;
         }
@@ -71,80 +71,92 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Register</title>
-    <style>
-        .error { color: red; font-size: 14px; }
-        .success { color: green; font-size: 14px; }
-    </style>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/auth.css">
 </head>
-<body>
-    <h2>Customer Registration</h2>
-    
-    <?php if (!empty($successMessage)) : ?>
-        <p class="success"><?php echo $successMessage; ?></p>
-    <?php endif; ?>
+<body class="bg-light">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4">
+                <h2 class="text-center mb-4">Customer Registration</h2>
 
-    <form action="" method="POST">
-        <label>
-            First Name:
-            <input type="text" name="firstName" required>
-            <span class="error"><?php echo $errors['firstName'] ?? ''; ?></span>
-        </label><br>
+                <?php if (!empty($successMessage)) : ?>
+                    <div class="alert alert-success text-center">
+                        <?php echo $successMessage; ?>
+                    </div>
+                <?php endif; ?>
 
-        <label>
-            Middle Initial:
-            <input type="text" name="middleInitial">
-        </label><br>
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control" required>
+                        <div class="text-danger small"><?php echo $errors['firstName'] ?? ''; ?></div>
+                    </div>
 
-        <label>
-            Last Name:
-            <input type="text" name="lastName" required>
-            <span class="error"><?php echo $errors['lastName'] ?? ''; ?></span>
-        </label><br>
+                    <div class="mb-3">
+                        <label for="middleInitial" class="form-label">Middle Initial:</label>
+                        <input type="text" id="middleInitial" name="middleInitial" class="form-control">
+                    </div>
 
-        <label>
-            Email:
-            <input type="email" name="email" required>
-            <span class="error"><?php echo $errors['email'] ?? ''; ?></span>
-        </label><br>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" required>
+                        <div class="text-danger small"><?php echo $errors['lastName'] ?? ''; ?></div>
+                    </div>
 
-        <label>
-            Phone Number:
-            <input type="text" name="phoneNumber" required>
-            <span class="error"><?php echo $errors['phoneNumber'] ?? ''; ?></span>
-        </label><br>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                        <div class="text-danger small"><?php echo $errors['email'] ?? ''; ?></div>
+                    </div>
 
-        <label>
-            City/Town:
-            <input type="text" name="cityTown">
-            <span class="error"><?php echo $errors['cityTown'] ?? ''; ?></span>
-        </label><br>
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Phone Number:</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required>
+                        <div class="text-danger small"><?php echo $errors['phoneNumber'] ?? ''; ?></div>
+                    </div>
 
-        <label>
-            Street:
-            <input type="text" name="street">
-            <span class="error"><?php echo $errors['street'] ?? ''; ?></span>
-        </label><br>
+                    <div class="mb-3">
+                        <label for="cityTown" class="form-label">City/Town:</label>
+                        <input type="text" id="cityTown" name="cityTown" class="form-control">
+                        <div class="text-danger small"><?php echo $errors['cityTown'] ?? ''; ?></div>
+                    </div>
 
-        <label>
-            House Number:
-            <input type="number" name="houseNumber">
-        </label><br>
+                    <div class="mb-3">
+                        <label for="street" class="form-label">Street:</label>
+                        <input type="text" id="street" name="street" class="form-control">
+                        <div class="text-danger small"><?php echo $errors['street'] ?? ''; ?></div>
+                    </div>
 
-        <label>
-            Password:
-            <input type="password" name="password" required>
-            <span class="error"><?php echo $errors['password'] ?? ''; ?></span>
-        </label><br>
+                    <div class="mb-3">
+                        <label for="houseNumber" class="form-label">House Number:</label>
+                        <input type="number" id="houseNumber" name="houseNumber" class="form-control">
+                    </div>
 
-        <button type="submit">Signup</button>
-        <button><a href="../public/index.php">Go back to options</a></button>
-    </form>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                        <div class="text-danger small"><?php echo $errors['password'] ?? ''; ?></div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary mb-2">Signup</button>
+                        <a href="../public/index.php" class="btn btn-secondary">Go back to options</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

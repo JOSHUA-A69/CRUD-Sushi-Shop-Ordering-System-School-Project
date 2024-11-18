@@ -1,0 +1,57 @@
+
+    body {
+    background-image: url('../images/SushiBG2.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+ .form-container {
+    background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    backdrop-filter: blur(10px); /* Adds a subtle blur effect for modern look */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: Soft border for more contrast */
+ }
+
+ .form-container h2 {
+ color: #fff;
+ }
+
+.form-container .form-label,   .form-container .text-danger {
+            color: #f8f9fa; /* Light color for labels and errors */
+ }
+    
+ .container {
+    background-color: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white; /* Makes all text white */
+    max-width: 800px; /* Reduced width */
+    width: 400%; /* Ensures responsiveness */
+}
+
+.container input,
+.container textarea,
+.container select {
+    color: white; /* Text color */
+    background-color: transparent; /* Keeps background transparent */
+    border: 1px solid rgba(255, 255, 255, 0.7); /* Light border */
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.container input:focus,
+.container textarea:focus,
+.container select:focus {
+    outline: none; /* Removes default focus outline */
+    border-color:#DEB887 ; /* Adds a highlighted border on focus */
+    background-color: rgba(255, 255, 255, 0.1); /* Light background for focus */
+    color: white; /* Keeps text white */
+}
+
