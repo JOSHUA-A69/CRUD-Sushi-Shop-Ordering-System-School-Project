@@ -1,0 +1,57 @@
+body {
+    background-color: #f8f9fa; /* Light background for the page */
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../images/SushiBG3.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    font-family: 'Arial', sans-serif;
+    color: #333; 
+}
+
+h1 {
+    color: burlywood;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.menu-item {
+    border: 1px solid black; /* Light border for the card */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.menu-item:hover {
+    transform: translateY(-5px); /* Slight hover lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: bisque;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d; /* Muted text color */
+}
+
+.order-btn {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.order-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3;
+}
+
