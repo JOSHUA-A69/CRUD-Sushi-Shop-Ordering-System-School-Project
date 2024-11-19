@@ -1,0 +1,158 @@
+/* Body and HTML */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    color: white;
+    padding-top: 79px;
+}
+
+/* Background image */
+.background-image {
+    background-image: url('../images/SushiBanner.jpg'); 
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.nav-item{
+    margin: 0 15px
+}
+
+.navbar .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: burlywood;
+}
+
+/* Main Section */
+main {
+    margin-top: 100px; /* Adjust margin for fixed navbar */
+    padding: 20px;
+    text-align: center;
+}
+
+main h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+main .lead {
+    font-size: 1.2rem;
+    color: #ddd; /* Softer contrast for the lead text */
+    margin-bottom: 20px;
+}
+
+main a.btn {
+    background-color: #007bff; /* Primary blue */
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+main a.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+    text-align: center; /* Center aligns all text */
+    font-family: 'Poppins', sans-serif; /* Use a clean and readable font */
+    color: rgb(17, 33, 58); /* Dark color for contrast */
+    margin-top: 80px; /* Add space below the navbar */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.header-content h1 {
+    font-size: 2.5rem; /* Large, clear heading */
+    font-weight: 2024; /* Bold for emphasis */
+    margin-bottom: 20px; /* Space between the heading and subtext */
+    color: bisque;
+}
+
+.header-content .lead {
+    font-size: 1.2rem; 
+    font-weight: 400; 
+    color: #fff; 
+    margin-bottom: 30px; /* Space before the button */
+}
+
+.header-content .btn {
+    font-size: 1rem; /* Standard button text size */
+    font-weight: 500; /* Semi-bold for prominence */
+    padding: 10px 20px; /* Comfortable padding for buttons */
+    text-transform: uppercase; /* Consistent uppercase style */
+    border-radius: 5px; /* Rounded corners for a modern look */
+}
+
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.3); /* Lighter dark background with opacity */
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    color: burlywood; /* Hover color for footer links */
+}
+
