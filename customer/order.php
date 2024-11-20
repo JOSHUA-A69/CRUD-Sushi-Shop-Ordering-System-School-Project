@@ -42,15 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         VALUES (?, ?, ?, ?, 'Pending', 'Unpaid')
     ");
     $stmt->bind_param("iiid", $customerID, $itemID, $quantity, $totalPrice);
-
+    
     if ($stmt->execute()) {
-        echo "<p>Order placed successfully!</p>";
-        echo '<a href="index.php">Back to Dashboard</a>';
+        header("Location: order_status.php?status=success&message=Order placed successfully!");
+        exit();
     } else {
-        echo "<p>Failed to place order. Please try again later.</p>";
+        header("Location: order_status.php?status=failure&message=Failed to place order. Please try again later.");
         error_log("Order Insert Error: " . $stmt->error);
+        exit();
     }
-
+    
     $stmt->close();
     $mysqli->close();
     exit();
@@ -61,19 +62,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - <?php echo htmlspecialchars($item['ItemName']); ?></title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/order.css">
 </head>
-<body>
-    <h1>Order: <?php echo htmlspecialchars($item['ItemName']); ?></h1>
-    <p>Price per piece: $<?php echo number_format($item['Price'], 2); ?></p>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="card shadow p-4">
+            <h1 class="text-center mb-4">
+                Order: <?php echo htmlspecialchars($item['ItemName']); ?>
+            </h1>
+            <p class="text-muted text-center mb-4">
+                Price per piece: $<?php echo number_format($item['Price'], 2); ?>
+            </p>
 
-    <form method="POST" action="order.php?id=<?php echo $itemID; ?>">
-        <!-- Assuming CustomerID is stored in a session after login -->
-        <input type="hidden" name="customerID" value="<?php echo $_SESSION['customerID'] ?? 1; ?>">
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" min="1" required>
-        <button type="submit">Place Order</button>
-    </form>
+            <form method="POST" action="order.php?id=<?php echo $itemID; ?>" class="needs-validation" novalidate>
+                <input type="hidden" name="customerID" value="<?php echo $_SESSION['customerID'] ?? 1; ?>">
+
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity:</label>
+                    <input type="number" class="form-control" name="quantity" id="quantity" min="1" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
