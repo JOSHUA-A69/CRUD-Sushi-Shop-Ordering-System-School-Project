@@ -40,44 +40,54 @@ $result = $stmt->get_result();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History</title>
-    <link rel="stylesheet" href="styles/order_history.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/order_history.css">
 </head>
-<body>
-    <h1>Your Order History</h1>
-    <div class="order-history">
-        <?php if ($result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="order-item">
-                    <p><strong>Order ID:</strong> <?php echo htmlspecialchars($row['orderID']); ?></p>
-                    <p><strong>Item:</strong> <?php echo htmlspecialchars($row['ItemName']); ?></p>
-                    <p><strong>Date:</strong> <?php echo htmlspecialchars($row['OrderTime']); ?></p>
-                    <p><strong>Status:</strong> <?php echo htmlspecialchars($row['orderStatus']); ?></p>
-                    
-                    <!-- Display feedback if it exists -->
-                    <?php if (!empty($row['Feedback'])): ?>
-                        <p><strong>Your Feedback:</strong> <?php echo htmlspecialchars($row['Feedback']); ?></p>
-                    <?php else: ?>
-                        <!-- Feedback form -->
-                        <form action="submit_feedback.php" method="POST" class="feedback-form">
-                            <input type="hidden" name="orderID" value="<?php echo htmlspecialchars($row['orderID']); ?>">
-                            <textarea name="feedback" placeholder="Leave your feedback here..." required></textarea>
-                            <button type="submit" class="btn">Submit Feedback</button>
-                        </form>
-                    <?php endif; ?>
-                </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No orders found in your history.</p>
-        <?php endif; ?>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Your Order History</h1>
+        <div class="order-history row gy-4">
+            <?php if ($result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="order-item col-md-6 col-lg-4 p-3">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <p><strong>Order ID:</strong> <?php echo htmlspecialchars($row['orderID']); ?></p>
+                                <p><strong>Item:</strong> <?php echo htmlspecialchars($row['ItemName']); ?></p>
+                                <p><strong>Date:</strong> <?php echo htmlspecialchars($row['OrderTime']); ?></p>
+                                <p><strong>Status:</strong> <?php echo htmlspecialchars($row['orderStatus']); ?></p>
+                                
+                                <?php if (!empty($row['Feedback'])): ?>
+                                    <p><strong>Your Feedback:</strong> <?php echo htmlspecialchars($row['Feedback']); ?></p>
+                                <?php else: ?>
+                                    <form action="submit_feedback.php" method="POST" class="feedback-form mt-3">
+                                        <input type="hidden" name="orderID" value="<?php echo htmlspecialchars($row['orderID']); ?>">
+                                        <textarea name="feedback" class="form-control mb-2" placeholder="Leave your feedback here..." required></textarea>
+                                        <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p class="text-center">No orders found in your history.</p>
+            <?php endif; ?>
+        </div>
+
+        <!-- Back to Dashboard button -->
+        <div class="text-center mt-4">
+            <a href="index.php" class="btn btn-primary">Back to Dashboard</a>
+        </div>
     </div>
 
-    <!-- Optional back button -->
-    <div class="back-button">
-        <a href="index.php" class="btn">Back to Dashboard</a>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 <?php
 // Close the database connection
 $stmt->close();
