@@ -1,13 +1,10 @@
 body {
     font-family: 'Poppins', sans-serif;
-}
-
-h1 {
-    color: #333; /* Dark text for heading */
+    
 }
 
 form {
-    background-color: #fff; /* Form background */
+    background-color: white; /* Form background */
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for form */

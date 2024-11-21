@@ -3,18 +3,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Card customization */
-.card {
-    max-width: 500px;
-    margin: 20px auto;
-    border: 1px solid #444; 
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.2); 
-    color: #fff; 
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 /* Centering text */
 h1 {
     font-size: 1.8rem;

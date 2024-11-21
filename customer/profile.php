@@ -49,7 +49,7 @@ $mysqli->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/profile.css">
 </head>
-<body class="bg-light">
+<body class="custom-bg">
     <div class="container py-5">
         <h1 class="text-center mb-4">Your Profile</h1>
 

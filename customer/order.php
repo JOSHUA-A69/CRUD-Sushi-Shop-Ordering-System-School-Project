@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="bg-light">
     <div class="container py-5">
-        <div class="card shadow p-4">
+        <div class="card shadow p-4 bg-white text-center text-dark ">
             <h1 class="text-center mb-4">
                 Order: <?php echo htmlspecialchars($item['ItemName']); ?>
             </h1>
