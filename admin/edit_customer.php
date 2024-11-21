@@ -46,37 +46,85 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Customer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/manage_customers.css">
 </head>
-<body>
-    <h1>Edit Customer Profile</h1>
-    <form method="POST" action="">
-        <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" id="firstName" value="<?= htmlspecialchars($customer['firstName']) ?>" required><br>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="card shadow p-4">
+            <h1 class="text-center mb-4">Edit Customer Profile</h1>
+            
+            <form method="POST" action="" class="needs-validation" novalidate>
+                <!-- First Name -->
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" name="firstName" id="firstName" class="form-control" 
+                        value="<?= htmlspecialchars($customer['firstName']) ?>" required>
+                </div>
+                
+                <!-- Middle Initial -->
+                <div class="mb-3">
+                    <label for="middleInitial" class="form-label">Middle Initial</label>
+                    <input type="text" name="middleInitial" id="middleInitial" class="form-control" 
+                        value="<?= htmlspecialchars($customer['middleInitial']) ?>">
+                </div>
+                
+                <!-- Last Name -->
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" class="form-control" 
+                        value="<?= htmlspecialchars($customer['lastName']) ?>" required>
+                </div>
+                
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" 
+                        value="<?= htmlspecialchars($customer['email']) ?>" required>
+                </div>
+                
+                <!-- Phone Number -->
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" 
+                        value="<?= htmlspecialchars($customer['phoneNumber']) ?>">
+                </div>
+                
+                <!-- Street -->
+                <div class="mb-3">
+                    <label for="street" class="form-label">Street</label>
+                    <input type="text" name="street" id="street" class="form-control" 
+                        value="<?= htmlspecialchars($customer['street']) ?>">
+                </div>
+                
+                <!-- City/Town -->
+                <div class="mb-3">
+                    <label for="citytown" class="form-label">City/Town</label>
+                    <input type="text" name="citytown" id="citytown" class="form-control" 
+                        value="<?= htmlspecialchars($customer['citytown']) ?>">
+                </div>
+                
+                <!-- House Number -->
+                <div class="mb-3">
+                    <label for="houseNumber" class="form-label">House Number</label>
+                    <input type="text" name="houseNumber" id="houseNumber" class="form-control" 
+                        value="<?= htmlspecialchars($customer['houseNumber']) ?>">
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                    <a href="manage_customers.php" class="btn btn-secondary">Back to Customer List</a>
+                </div>
+            </form>
+        </div>
+    </div>
 
-        <label for="middleInitial">Middle Initial:</label>
-        <input type="text" name="middleInitial" id="middleInitial" value="<?= htmlspecialchars($customer['middleInitial']) ?>"><br>
-
-        <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" id="lastName" value="<?= htmlspecialchars($customer['lastName']) ?>" required><br>
-
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" value="<?= htmlspecialchars($customer['email']) ?>" required><br>
-
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" name="phoneNumber" id="phoneNumber" value="<?= htmlspecialchars($customer['phoneNumber']) ?>"><br>
-
-        <label for="street">Street:</label>
-        <input type="text" name="street" id="street" value="<?= htmlspecialchars($customer['street']) ?>"><br>
-
-        <label for="citytown">City/Town:</label>
-        <input type="text" name="citytown" id="citytown" value="<?= htmlspecialchars($customer['citytown']) ?>"><br>
-
-        <label for="houseNumber">House Number:</label>
-        <input type="text" name="houseNumber" id="houseNumber" value="<?= htmlspecialchars($customer['houseNumber']) ?>"><br>
-
-        <input type="submit" value="Update Profile">
-        <a href="manage_customers.php">Back to Customer List</a>
-    </form>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

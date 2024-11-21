@@ -16,22 +16,38 @@ if (isset($_GET['id'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Customer</title>
-    <link rel="stylesheet" href="styles/admin.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/manage_customers.css">
 </head>
-<body>
-    <div class="admin-container">
-        <h1>Customer Details</h1>
-        <?php if ($customer): ?>
-            <p><strong>Customer ID:</strong> <?= $customer['CustomerID'] ?></p>
-            <p><strong>Name:</strong> <?= $customer['firstName'] . ' ' . $customer['middleInitial'] . ' ' . $customer['lastName'] ?></p>
-            <p><strong>Email:</strong> <?= $customer['email'] ?></p>
-            <p><strong>Phone Number:</strong> <?= $customer['phoneNumber'] ?></p>
-            <p><strong>Address:</strong> <?= $customer['street'] . ', ' . $customer['citytown'] . ', House Number ' . $customer['houseNumber'] ?></p>
-            <a href="manage_customers.php">Back to Customer List</a>
-        <?php else: ?>
-            <p>Customer not found.</p>
-        <?php endif; ?>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="card shadow p-4">
+            <h1 class="text-center mb-4">Customer Details</h1>
+            
+            <?php if ($customer): ?>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Customer ID:</strong> <?= htmlspecialchars($customer['CustomerID']) ?></li>
+                    <li class="list-group-item"><strong>Name:</strong> <?= htmlspecialchars($customer['firstName'] . ' ' . $customer['middleInitial'] . ' ' . $customer['lastName']) ?></li>
+                    <li class="list-group-item"><strong>Email:</strong> <?= htmlspecialchars($customer['email']) ?></li>
+                    <li class="list-group-item"><strong>Phone Number:</strong> <?= htmlspecialchars($customer['phoneNumber']) ?></li>
+                    <li class="list-group-item"><strong>Address:</strong> <?= htmlspecialchars($customer['street'] . ', ' . $customer['citytown'] . ', House Number ' . $customer['houseNumber']) ?></li>
+                </ul>
+                <div class="mt-4">
+                    <a href="manage_customers.php" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Customer List
+                    </a>
+                </div>
+            <?php else: ?>
+                <p class="text-danger">Customer not found.</p>
+            <?php endif; ?>
+        </div>
     </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
