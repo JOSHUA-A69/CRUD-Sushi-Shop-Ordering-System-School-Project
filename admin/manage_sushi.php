@@ -15,6 +15,7 @@ $sushiItems = $sushiItemController->getAllSushiItems();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/manage_sushi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container py-4">
@@ -50,10 +51,10 @@ $sushiItems = $sushiItemController->getAllSushiItems();
                             </td>
                             <td>
                                 <a href="edit_sushi_item.php?id=<?= $item['ItemID'] ?>" class="btn btn-sm btn-primary">
-                                    <i class="bi bi-pencil-square"></i> Edit
+                                    <i class="bi bi-pencil-square">Edit</i>
                                 </a>
                                 <a href="delete_sushi_item.php?id=<?= $item['ItemID'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">
-                                    <i class="bi bi-trash"></i> Delete
+                                    <i class="bi bi-trash">Delete</i> 
                                 </a>
                             </td>
                         </tr>

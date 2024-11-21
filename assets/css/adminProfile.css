@@ -1,0 +1,20 @@
+/* Center the card on the page */
+.container {
+    max-width: 800px;
+}
+
+/* Add shadow and rounded corners to the card */
+.card {
+    border-radius: 10px;
+    border: none;
+}
+
+/* Styling for the form buttons */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

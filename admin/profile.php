@@ -54,44 +54,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
-    <link rel="stylesheet" href="styles/admin.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/adminProfile.css">
 </head>
 <body>
-    <div class="admin-container">
-        <h1>Update Profile</h1>
-        
-        <!-- Display success or error message -->
-        <?php if (isset($_GET['success'])): ?>
-            <p class="success">Profile updated successfully.</p>
-        <?php elseif (isset($_GET['error'])): ?>
-            <p class="error">Failed to update profile. Please try again.</p>
-        <?php endif; ?>
-        
-        <?php if ($admin): ?>
-            <form method="POST">
-                <label>Name:</label>
-                <input type="text" name="name" value="<?= htmlspecialchars($admin['name'] ?? '') ?>" required>
-                
-                <label>Email:</label>
-                <input type="email" name="email" value="<?= htmlspecialchars($admin['email'] ?? '') ?>" required>
-                
-                <label>Contact Number:</label>
-                <input type="text" name="contactNumber" value="<?= htmlspecialchars($admin['contactNumber'] ?? '') ?>" required>
-                
-                <label>Username:</label>
-                <input type="text" name="username" value="<?= htmlspecialchars($admin['username'] ?? '') ?>" required>
-                
-                <label>Role:</label>
-                <input type="text" name="role" value="<?= htmlspecialchars($admin['role'] ?? '') ?>" required>
-                
-                <label>Password (leave blank to keep current password):</label>
-                <input type="password" name="password" placeholder="New Password">
-                
-                <button type="submit">Update Profile</button>
-            </form>
-        <?php else: ?>
-            <p>Unable to fetch profile data. Please try again later.</p>
-        <?php endif; ?>
+    <div class="container my-5">
+        <div class="card shadow p-4">
+            <h1 class="text-center mb-4">Update Profile</h1>
+
+            <!-- Display success or error message -->
+            <?php if (isset($_GET['success'])): ?>
+                <div class="alert alert-success text-center">
+                    Profile updated successfully.
+                </div>
+            <?php elseif (isset($_GET['error'])): ?>
+                <div class="alert alert-danger text-center">
+                    Failed to update profile. Please try again.
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($admin): ?>
+                <form method="POST" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" id="name" name="name" class="form-control" 
+                               value="<?= htmlspecialchars($admin['name'] ?? '') ?>" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" 
+                               value="<?= htmlspecialchars($admin['email'] ?? '') ?>" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="contactNumber" class="form-label">Contact Number:</label>
+                        <input type="text" id="contactNumber" name="contactNumber" class="form-control" 
+                               value="<?= htmlspecialchars($admin['contactNumber'] ?? '') ?>" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" id="username" name="username" class="form-control" 
+                               value="<?= htmlspecialchars($admin['username'] ?? '') ?>" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="role" class="form-label">Role:</label>
+                        <input type="text" id="role" name="role" class="form-control" 
+                               value="<?= htmlspecialchars($admin['role'] ?? '') ?>" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password (leave blank to keep current password):</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="New Password">
+                    </div>
+                    
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </div>
+                </form>
+            <?php else: ?>
+                <div class="alert alert-warning text-center mt-4">
+                    Unable to fetch profile data. Please try again later.
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </body>
 </html>
+
