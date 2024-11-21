@@ -47,52 +47,68 @@ $mysqli->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Orders</title>
-    <link rel="stylesheet" href="styles/admin.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/manage_orders.css">
 </head>
-<body>
-    <div class="admin-container">
-        <h1>Manage Orders</h1>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="card shadow p-4">
+            <h1 class="mb-4 text-center">Manage Orders</h1>
 
-        <?php if (empty($orders)): ?>
-            <p>No orders available.</p>
-        <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Customer ID</th>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Status</th>
-                        <th>Payment Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($orders as $order): ?>
+            <?php if (empty($orders)): ?>
+                <p class="text-center text-muted">No orders available.</p>
+            <?php else: ?>
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
                         <tr>
-                            <td><?= htmlspecialchars($order['orderID']) ?></td>
-                            <td><?= htmlspecialchars($order['customerID']) ?></td>
-                            <td><?= htmlspecialchars($order['itemName']) ?></td>
-                            <td><?= htmlspecialchars($order['quantity']) ?></td>
-                            <td><?= number_format($order['totalPrice'], 2) ?></td>
-                            <td><?= htmlspecialchars($order['orderStatus']) ?></td>
-                            <td><?= htmlspecialchars($order['paymentStatus']) ?></td>
-                            <td>
-                                <a href="edit_order.php?id=<?= $order['orderID'] ?>" class="btn">Edit</a>
-                            </td>
+                            <th>Order ID</th>
+                            <th>Customer ID</th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Payment Status</th>
+                            <th>Actions</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($orders as $order): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($order['orderID']) ?></td>
+                                <td><?= htmlspecialchars($order['customerID']) ?></td>
+                                <td><?= htmlspecialchars($order['itemName']) ?></td>
+                                <td><?= htmlspecialchars($order['quantity']) ?></td>
+                                <td>$<?= number_format($order['totalPrice'], 2) ?></td>
+                                <td><?= htmlspecialchars($order['orderStatus']) ?></td>
+                                <td><?= htmlspecialchars($order['paymentStatus']) ?></td>
+                                <td>
+                                    <a href="edit_order.php?id=<?= $order['orderID'] ?>" 
+                                       class="btn btn-primary btn-sm">
+                                       <i class="fas fa-pencil-alt"></i> Edit
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
 
-        <!-- Add a navigation button -->
-        <div class="add-button">
-            <a href="index.php" class="btn">Back to Dashboard</a>
+            <!-- Back to Dashboard Button -->
+            <div class="text-center mt-4">
+                <a href="index.php" class="btn btn-secondary">
+                    Back to Dashboard
+                </a>
+            </div>
         </div>
     </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

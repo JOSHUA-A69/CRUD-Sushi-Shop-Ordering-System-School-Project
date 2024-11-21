@@ -1,0 +1,96 @@
+/* Card Styling */
+.card {
+    border-radius: 10px;
+    background-color: #fff;
+    border: none;
+}
+
+/* Table Styling */
+.table {
+    font-size: 0.9rem;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/* Buttons */
+.btn {
+    min-width: 100px;
+    padding: 0.5rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 10px;
+    background-color: #fff;
+    border: none;
+}
+
+/* Alerts */
+.alert {
+    font-size: 0.95rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.6rem 1.2rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* Responsive Form Layout */
+@media (max-width: 768px) {
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive Padding */
+@media (max-width: 768px) {
+    .card {
+        padding: 1.5rem;
+    }
+
+    .table {
+        font-size: 0.8rem;
+    }
+}

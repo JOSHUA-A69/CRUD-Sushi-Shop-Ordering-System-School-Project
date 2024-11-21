@@ -18,6 +18,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 
+$updateSuccess = null; // Default state
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data safely
@@ -34,10 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $updateSuccess = $customerController->updateProfile($customerID, $firstName, $middleInitial, $lastName, $email, $phoneNumber, $street, $citytown, $houseNumber);
 
     if ($updateSuccess) {
-        echo "Customer profile updated successfully!";
-        // Optionally, redirect to another page here
+        echo '<div class="custom-alert success">Customer profile updated successfully!</div>';
     } else {
-        echo "Failed to update customer profile.";
+        echo '<div class="custom-alert error">Failed to update customer profile.</div>';
     }
 }
 ?>
@@ -57,7 +57,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container py-5">
         <div class="card shadow p-4">
             <h1 class="text-center mb-4">Edit Customer Profile</h1>
-            
+           
+             <div class="message-container">
+          <?php if (isset($updateSuccess) && $updateSuccess): ?>
+        <div class="alert success">
+            Customer profile updated successfully!
+        </div>
+        <?php elseif (isset($updateSuccess)): ?>
+        <div class="alert error">
+            Failed to update customer profile.
+        </div>
+       <?php endif; ?>
+      </div>
+      
             <form method="POST" action="" class="needs-validation" novalidate>
                 <!-- First Name -->
                 <div class="mb-3">

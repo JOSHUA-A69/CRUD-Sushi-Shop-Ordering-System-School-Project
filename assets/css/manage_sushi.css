@@ -1,0 +1,22 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.add-button {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.badge {
+    padding: 0.5em 0.8em;
+    font-size: 0.9em;
+}

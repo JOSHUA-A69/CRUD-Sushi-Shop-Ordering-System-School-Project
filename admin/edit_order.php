@@ -90,52 +90,81 @@ if (isset($_GET['id'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Order</title>
-    <link rel="stylesheet" href="styles/admin.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/manage_orders.css">
 </head>
-<body>
-    <div class="admin-container">
-        <h1>Edit Order</h1>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="card shadow p-4">
+            <h1 class="mb-4 text-center">Edit Order</h1>
 
-        <?php if (!empty($order)): ?>
-            <!-- Display success or error messages -->
-            <?php if (isset($successMessage)): ?>
-                <p class="success"><?= htmlspecialchars($successMessage) ?></p>
-            <?php elseif (isset($errorMessage)): ?>
-                <p class="error"><?= htmlspecialchars($errorMessage) ?></p>
+            <?php if (!empty($order)): ?>
+                <!-- Display success or error messages -->
+                <?php if (isset($successMessage)): ?>
+                    <div class="alert alert-success">
+                        <?= htmlspecialchars($successMessage) ?>
+                    </div>
+                <?php elseif (isset($errorMessage)): ?>
+                    <div class="alert alert-danger">
+                        <?= htmlspecialchars($errorMessage) ?>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Edit form -->
+                <form action="" method="POST" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="orderStatus" class="form-label">Order Status:</label>
+                        <select name="orderStatus" id="orderStatus" class="form-select">
+                            <option value="Pending" <?= $order['orderStatus'] === 'Pending' ? 'selected' : '' ?>>Pending</option>
+                            <option value="Completed" <?= $order['orderStatus'] === 'Completed' ? 'selected' : '' ?>>Completed</option>
+                            <option value="Cancelled" <?= $order['orderStatus'] === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="paymentStatus" class="form-label">Payment Status:</label>
+                        <select name="paymentStatus" id="paymentStatus" class="form-select">
+                            <option value="Unpaid" <?= $order['paymentStatus'] === 'Unpaid' ? 'selected' : '' ?>>Unpaid</option>
+                            <option value="Paid" <?= $order['paymentStatus'] === 'Paid' ? 'selected' : '' ?>>Paid</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="quantity" class="form-label">Quantity:</label>
+                        <input type="number" name="quantity" id="quantity" 
+                               class="form-control" 
+                               value="<?= htmlspecialchars($order['quantity']) ?>" 
+                               required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="totalPrice" class="form-label">Total Price:</label>
+                        <input type="number" step="0.01" name="totalPrice" id="totalPrice" 
+                               class="form-control" 
+                               value="<?= htmlspecialchars($order['totalPrice']) ?>" 
+                               required>
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary px-4">Update Order</button>
+                    </div>
+                </form>
+            <?php else: ?>
+                <p class="text-muted text-center">No details available for this order.</p>
             <?php endif; ?>
 
-            <!-- Edit form -->
-            <form action="" method="POST">
-                <label for="orderStatus">Order Status:</label>
-                <select name="orderStatus" id="orderStatus">
-                    <option value="Pending" <?= $order['orderStatus'] === 'Pending' ? 'selected' : '' ?>>Pending</option>
-                    <option value="Completed" <?= $order['orderStatus'] === 'Completed' ? 'selected' : '' ?>>Completed</option>
-                    <option value="Cancelled" <?= $order['orderStatus'] === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
-                </select>
-
-                <label for="paymentStatus">Payment Status:</label>
-                <select name="paymentStatus" id="paymentStatus">
-                    <option value="Unpaid" <?= $order['paymentStatus'] === 'Unpaid' ? 'selected' : '' ?>>Unpaid</option>
-                    <option value="Paid" <?= $order['paymentStatus'] === 'Paid' ? 'selected' : '' ?>>Paid</option>
-                </select>
-
-                <label for="quantity">Quantity:</label>
-                <input type="number" name="quantity" id="quantity" value="<?= htmlspecialchars($order['quantity']) ?>" required>
-
-                <label for="totalPrice">Total Price:</label>
-                <input type="number" step="0.01" name="totalPrice" id="totalPrice" value="<?= htmlspecialchars($order['totalPrice']) ?>" required>
-
-                <button type="submit" class="btn">Update Order</button>
-            </form>
-        <?php else: ?>
-            <p>No details available for this order.</p>
-        <?php endif; ?>
-
-        <!-- Add a back button for better navigation -->
-        <div class="back-button">
-            <a href="manage_orders.php" class="btn">Back to Orders</a>
+            <!-- Back to Orders Button -->
+            <div class="text-center mt-4">
+                <a href="manage_orders.php" class="btn btn-secondary">Back to Orders</a>
+            </div>
         </div>
     </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
