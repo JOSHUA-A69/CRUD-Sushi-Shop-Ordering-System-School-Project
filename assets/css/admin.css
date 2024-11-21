@@ -1,0 +1,78 @@
+/* Body Background */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../images/SushiBanner2.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+}
+
+/* Navbar Customization */
+.navbar-dark {
+    background-color: #333;
+}
+
+.navbar-dark .nav-link {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.navbar-dark .nav-link:hover {
+    color: burlywood;
+}
+
+/* Card Customization */
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Light transparent */
+    border-radius: 12px;
+}
+
+.card p {
+    margin: 0;
+    color: #555;
+}
+
+/* Text Center Alignment */
+.text-center h1 {
+    color: burlywood;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Admin Links */
+.nav-link.text-danger {
+    font-weight: bold;
+}
+
+
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.3); /* Lighter dark background with opacity */
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    color: burlywood; /* Hover color for footer links */
+}
+
+
+/* Responsive Font Sizes */
+@media (max-width: 768px) {
+    h1.display-5 {
+        font-size: 1.8rem;
+    }
+}
