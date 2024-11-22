@@ -83,6 +83,17 @@ body {
 }
 
 
+/* Ensures proper spacing and alignment */
+.charts-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 50px; 
+    flex-wrap: wrap; 
+}
+
+
+
 /* Responsive Font Sizes */
 @media (max-width: 768px) {
     h1.display-5 {

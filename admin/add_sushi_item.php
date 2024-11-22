@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles/admin.css">
+    <link rel="stylesheet" href="../assets/css/manage_sushi.css">
 </head>
 <body>
     <div class="container my-5">
