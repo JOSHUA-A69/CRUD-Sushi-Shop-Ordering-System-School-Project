@@ -61,13 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <!-- Charts Container -->
 <div class="charts-container d-flex justify-content-center align-items-start gap-4 mt-5 mb-5">
     <!-- Chart Container: Top Selling Sushi Items -->
-    <div class="card shadow p-4" style="max-width: 550px;">
+    <div class="card shadow p-4" style="max-width: 850px;">
         <h3 class="text-center mb-4">Top Selling Sushi Items</h3>
-        <canvas id="topSellingChart"></canvas>
+        <canvas id="topSellingChart" style="max-height: 300px;" ></canvas>
     </div>
 
     <!-- Chart Container: Total Revenue for the Month -->
-    <div class="card shadow p-4" style="max-width: 350px;">
+    <div class="card shadow p-4" style="max-width: 550px;">
         <h3 class="text-center mb-4">Total Revenue for the Month</h3>
         <canvas id="monthlyRevenueChart" style="max-height: 300px;"></canvas>
     </div>

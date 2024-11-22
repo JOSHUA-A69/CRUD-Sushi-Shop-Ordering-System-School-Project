@@ -40,11 +40,63 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="menu.php" class="btn btn-primary">View Menu</a>
     </main>
 
+    <section class="top-selling-sushi mt-5">
+    <div class="container mb-5 pb-5">
+        <h2 class="text-center mb-4 custom-heading">Top 5 Best-Selling Sushi Items</h2>
+        <div class="row g-4" id="topSellingSushi">
+            <!-- Sushi items will be dynamically added here -->
+        </div>
+    </div>
+</section>
+ 
     <footer class="footer">
     <p>&copy; 2024 Divine Sushi | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
 </footer>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+    // Fetch top-selling sushi items for customers
+    fetch('fetch_top_selling.php')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('topSellingSushi');
+                
+                if (data.error) {
+                    container.innerHTML = `<p class="text-danger text-center">${data.error}</p>`;
+                    return;
+                }
+
+                // Check data structure
+                console.log('Fetched Data:', data);
+
+                data.forEach(item => {
+                    const name = item.ItemName || 'Unknown Sushi';
+                    const description = item.Description || 'No description available.';
+                    const price = (item.Price !== undefined && item.Price !== null) ? `$${parseFloat(item.Price).toFixed(2)}` : 'Price not available';
+
+                    console.log(`Item: ${name}, Price: ${price}`);  // Check individual item values
+
+                    const sushiCard = `
+                        <div class="col-md-4 mb-4">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title">${name}</h5>
+                                    <p class="card-text">${description}</p>
+                                    <p class="card-text"><strong>Price:</strong> ${price}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += sushiCard;
+                });
+            })
+            .catch(error => {
+                document.getElementById('topSellingSushi').innerHTML = `
+                    <p class="text-danger text-center">Error loading top-selling sushi items: ${error.message}</p>
+                `;
+            });
+</script>
 </body>
 </html>

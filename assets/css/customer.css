@@ -105,10 +105,12 @@ main a.btn:hover {
     text-align: center; /* Center aligns all text */
     font-family: 'Poppins', sans-serif; /* Use a clean and readable font */
     color: rgb(17, 33, 58); /* Dark color for contrast */
-    margin-top: 80px; /* Add space below the navbar */
-    padding: 20px;
+    padding: 25px;
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: -50px; 
+    text-align: center; 
+    position: relative; 
 }
 
 .header-content h1 {
@@ -156,3 +158,9 @@ main a.btn:hover {
     color: burlywood; /* Hover color for footer links */
 }
 
+.custom-heading {
+    color: bisque; 
+    font-weight: bold; 
+    background-color: rgba(0, 0, 0, 0.3);
+
+}

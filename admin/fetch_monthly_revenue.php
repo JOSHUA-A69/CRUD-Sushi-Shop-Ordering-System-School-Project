@@ -4,12 +4,13 @@ require_once '../config/database.php';
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 $query = "
-    SELECT DATE(OrderDate) AS date, SUM(TotalPrice) AS totalRevenue
-    FROM orders
-    WHERE MONTH(OrderDate) = MONTH(CURRENT_DATE()) AND YEAR(OrderDate) = YEAR(CURRENT_DATE())
-    GROUP BY DATE(OrderDate)
-    ORDER BY DATE(OrderDate) ASC;
+    SELECT DATE(OrderTime) AS date, SUM(TotalPrice) AS totalRevenue
+    FROM Orders
+    WHERE MONTH(OrderTime) = MONTH(CURRENT_DATE()) AND YEAR(OrderTime) = YEAR(CURRENT_DATE())
+    GROUP BY DATE(OrderTime)
+    ORDER BY DATE(OrderTime) ASC;
 ";
+
 
 $result = $mysqli->query($query);
 
