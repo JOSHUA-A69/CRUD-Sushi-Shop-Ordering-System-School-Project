@@ -1265,3 +1265,9 @@
 [2024-11-23 19:39:14] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
 [2024-11-23 19:39:14] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
 [2024-11-23 19:39:14] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-23 19:46:53] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-23 19:46:53] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-23 19:46:53] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21
+[2024-11-23 19:54:01] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 19
+[2024-11-23 19:54:01] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 20
+[2024-11-23 19:54:01] ERROR: ini_set(): Session ini settings cannot be changed when a session is active in C:\xampp\htdocs\IM101-FinalProject\public\index.php on line 21

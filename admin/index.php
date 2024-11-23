@@ -58,18 +58,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-      <!-- Charts Container -->
-<div class="charts-container d-flex justify-content-center align-items-start gap-4 mt-5 mb-5">
+    <div class="charts-container d-flex justify-content-center align-items-start gap-4 mt-5 mb-5 flex-wrap">
     <!-- Chart Container: Top Selling Sushi Items -->
     <div class="card shadow p-4" style="max-width: 850px;">
         <h3 class="text-center mb-4">Top Selling Sushi Items</h3>
-        <canvas id="topSellingChart" style="max-height: 300px;" ></canvas>
+        <canvas id="topSellingChart" style="max-height: 300px;"></canvas>
     </div>
 
     <!-- Chart Container: Total Revenue for the Month -->
     <div class="card shadow p-4" style="max-width: 550px;">
         <h3 class="text-center mb-4">Total Revenue for the Month</h3>
         <canvas id="monthlyRevenueChart" style="max-height: 300px;"></canvas>
+    </div>
+
+    <!-- Chart Container: Feedback Analysis -->
+    <div class="card shadow p-4" style="max-width: 400px;">
+        <h3 class="text-center mb-4">Feedback Analysis</h3>
+        <canvas id="feedbackChart" style="max-height: 170px;"></canvas>
     </div>
 </div>
 
@@ -156,6 +161,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     })
     .catch(error => console.error('Error fetching revenue data:', error));
+
+       // Fetch feedback data
+       fetch('feedback_analysis.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
+
+                // Prepare data for the chart
+                const chartData = {
+                    labels: ['Positive Feedback', 'Negative Feedback'],
+                    datasets: [{
+                        data: [data.PositiveFeedback, data.NegativeFeedback],
+                        backgroundColor: ['#4CAF50', '#F44336'], // Green and Red
+                        hoverOffset: 4
+                    }]
+                };
+
+                // Create the chart
+                const ctx = document.getElementById('feedbackChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (tooltipItem) {
+                                        const count = chartData.datasets[0].data[tooltipItem.dataIndex];
+                                        const total = chartData.datasets[0].data.reduce((a, b) => a + b, 0);
+                                        const percentage = ((count / total) * 100).toFixed(2);
+                                        return `${chartData.labels[tooltipItem.dataIndex]}: ${count} (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching feedback data:', error));
 
     </script>
 </body>

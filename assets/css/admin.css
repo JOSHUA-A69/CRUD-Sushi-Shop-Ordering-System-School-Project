@@ -64,11 +64,12 @@ body {
     background-color: rgba(0, 0, 0, 0.3); /* Lighter dark background with opacity */
     color: #fff;
     text-align: center;
-    padding: 1rem;
-    position: absolute;
+    padding: 10px;
+    position: relative;
     bottom: 0;
     width: 100%;
     z-index: 2;
+    margin-top: 20px; 
 }
 
 .footer a {
@@ -90,9 +91,8 @@ body {
     align-items: flex-start; 
     gap: 75px; 
     flex-wrap: wrap; 
+    margin-bottom: 50px; 
 }
-
-
 
 /* Responsive Font Sizes */
 @media (max-width: 768px) {

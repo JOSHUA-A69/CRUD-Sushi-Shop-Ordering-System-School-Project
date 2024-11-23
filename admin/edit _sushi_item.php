@@ -7,7 +7,7 @@ require_once '../config/database.php';
 
 // Check if item ID is provided
 if (!isset($_GET['id'])) {
-    header("Location: manage_sushi.php?error=no_id");
+    header("Location: manage_sushi.php?");
     exit();
 }
 
