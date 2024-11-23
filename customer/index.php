@@ -80,14 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     const sushiCard = `
                         <div class="col-md-4 mb-4">
-                            <div class="card shadow">
-                                <div class="card-body">
-                                    <h5 class="card-title">${name}</h5>
-                                    <p class="card-text">${description}</p>
-                                    <p class="card-text"><strong>Price:</strong> ${price}</p>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="card shadow">
+                       <div class="card-body">
+                      <h5 class="card-title">${name}</h5>
+                     <p class="card-text">${description}</p>
+                    <p class="card-text"><strong>Price:</strong> ${price}</p>
+                  </div>
+                 </div>
+                </div>
                     `;
                     container.innerHTML += sushiCard;
                 });

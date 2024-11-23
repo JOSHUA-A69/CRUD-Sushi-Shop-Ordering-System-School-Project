@@ -164,3 +164,32 @@ main a.btn:hover {
     background-color: rgba(0, 0, 0, 0.3);
 
 }
+
+.card.shadow {
+    background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+    color: white; /* White text for contrast */
+    border: none; /* Remove border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+.card.shadow:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* Prominent shadow on hover */
+}
+
+.card.shadow .card-title,
+.card.shadow .card-text {
+    color: white; /* Ensure text remains visible */
+}
+
+/* Adjust spacing for the section */
+.top-selling-sushi {
+    margin-top: 2rem; /* Decrease top margin */
+    padding-bottom: 2rem; /* Decrease bottom padding */
+}
+
+/* Adjust the container spacing */
+.top-selling-sushi .container {
+    margin-bottom: 2rem; /* Decrease bottom margin */
+    padding-bottom: 1rem; /* Reduce container padding */
+}
