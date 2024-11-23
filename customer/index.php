@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <section class="top-selling-sushi mt-5">
     <div class="container mb-5 pb-5">
-        <h2 class="text-center mb-4 custom-heading">Top 5 Best-Selling Sushi Items</h2>
+        <h2 class="text-center mb-4 custom-heading">BIG 3 Sushi Items</h2>
         <div class="row g-4" id="topSellingSushi">
             <!-- Sushi items will be dynamically added here -->
         </div>

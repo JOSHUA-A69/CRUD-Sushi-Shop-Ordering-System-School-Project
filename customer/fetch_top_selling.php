@@ -22,7 +22,7 @@ $sql = "SELECT
         JOIN Orders ON Sushi_Item.ItemID = Orders.ItemID
         GROUP BY Sushi_Item.ItemID
         ORDER BY TotalSold DESC
-        LIMIT 5";
+        LIMIT 3";
 
 // Execute the query and check for errors
 $result = $mysqli->query($sql);

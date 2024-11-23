@@ -159,7 +159,7 @@ main a.btn:hover {
 }
 
 .custom-heading {
-    color: bisque; 
+    color: burlywood; 
     font-weight: bold; 
     background-color: rgba(0, 0, 0, 0.3);
 
@@ -182,14 +182,20 @@ main a.btn:hover {
     color: white; /* Ensure text remains visible */
 }
 
-/* Adjust spacing for the section */
-.top-selling-sushi {
-    margin-top: 2rem; /* Decrease top margin */
-    padding-bottom: 2rem; /* Decrease bottom padding */
+/* Reduce the card size */
+.card {
+    height: auto; /* Allow height to adjust dynamically */
+    max-height: 300px; /* Adjust based on desired size */
+    padding: 1rem; /* Reduce padding inside the card */
+    font-size: 0.9rem; /* Scale down font size */
 }
 
-/* Adjust the container spacing */
-.top-selling-sushi .container {
-    margin-bottom: 2rem; /* Decrease bottom margin */
-    padding-bottom: 1rem; /* Reduce container padding */
+/* Add space at the bottom of the section */
+.top-selling-sushi {
+    margin-bottom: 2rem; 
+    padding-bottom: 0;
+}
+
+.row.g-4 {
+    row-gap: 1rem; /* Reduce the vertical spacing between rows */
 }
