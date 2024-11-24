@@ -31,7 +31,6 @@ The Sushi Shop Ordering System is a web-based CRUD application designed to strea
 
 ## System Overview
 The system provides:
-- A responsive and user-friendly interface.
 - A secure environment for data handling.
 - Tools for both customers and administrators to ensure smooth shop operations.
 
