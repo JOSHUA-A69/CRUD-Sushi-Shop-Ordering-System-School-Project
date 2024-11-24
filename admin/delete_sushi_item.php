@@ -31,24 +31,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: manage_sushi.php?message=deleted");
         exit;
     } else {
-        echo "<p>Error: " . $stmt->error . "</p>";
+        echo "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
     }
 
     // Close statement and connection
     $stmt->close();
     $mysqli->close();
 } elseif (isset($_GET['id'])) {
-    // Show confirmation if itemID is passed in GET request
+    // Get the itemID
     $itemID = $_GET['id'];
-    echo "<p>Are you sure you want to delete this sushi item?</p>";
-    echo "<form method='POST' action='delete_sushi_item.php'>";
-    echo "<input type='hidden' name='itemID' value='$itemID'>";
-    echo "<button type='submit'>Yes</button>";
-    echo "<a href='manage_sushi.php'>No</a>";
-    echo "</form>";
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Delete Sushi Item</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="icon" href="../assets/images/altlogo.png" type="image/png">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <div class="card shadow">
+                <div class="card-header text-danger">
+                    <h3>Delete Confirmation</h3>
+                </div>
+                <div class="card-body">
+                    <p>Are you sure you want to delete this sushi item?</p>
+                    <form method="POST" action="delete_sushi_item.php">
+                        <input type="hidden" name="itemID" value="<?php echo htmlspecialchars($itemID); ?>">
+                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        <a href="manage_sushi.php" class="btn btn-secondary">No, Go Back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap JS Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
+    <?php
 } else {
-    echo "<p>Sushi item ID not specified.</p>";
+    echo "<div class='container mt-5'><div class='alert alert-warning'>Sushi item ID not specified.</div></div>";
 }
 
 ob_end_flush();
 ?>
+
