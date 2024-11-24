@@ -5,6 +5,7 @@ $sushiItemController = new SushiItemController();
 $sushiItems = $sushiItemController->getAllSushiItems();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +51,7 @@ $sushiItems = $sushiItemController->getAllSushiItems();
                                 </span>
                             </td>
                             <td>
-                                <a href="edit_sushi_item.php?id=<?= $item['ItemID'] ?>" class="btn btn-sm btn-primary">
+                                <a href="edit _sushi_item.php?id=<?= $item['ItemID'] ?>" class="btn btn-sm btn-primary">
                                     <i class="bi bi-pencil-square">Edit</i>
                                 </a>
                                 <a href="delete_sushi_item.php?id=<?= $item['ItemID'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">

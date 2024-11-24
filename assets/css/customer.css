@@ -50,7 +50,9 @@ body, html {
 }
 
 .nav-item{
-    margin: 0 15px
+    margin-right: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .navbar .nav-link {
@@ -159,9 +161,9 @@ main a.btn:hover {
 }
 
 .custom-heading {
-    color: burlywood; 
+    color: bisque;
     font-weight: bold; 
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.7);
 
 }
 

@@ -1,5 +1,5 @@
 setInterval(() => {
-    fetch('fetch_top_selling.php')
+    fetch('../assets/admin/fetch_top_selling.php')
         .then(response => response.json())
         .then(data => {
             topSellingChart.data.labels = data.map(item => item.name);
@@ -9,7 +9,7 @@ setInterval(() => {
 }, 10000); // Refresh every 10 seconds
 
 
-fetch('fetch_monthly_revenue.php')
+fetch('../assets/admin/fetch_monthly_revenue.php')
     .then(response => response.json())
     .then(data => {
         console.log('Revenue Data:', data); // Log fetched data

@@ -21,3 +21,29 @@ h1 {
     font-size: 0.9em;
 }
 
+/* Container styles */
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Form border and shadow */
+form {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Back link button hover effect */
+a.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* Custom heading */
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #333;
+}
