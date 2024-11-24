@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/manage_sushi.css">
+    <link rel="icon" href="../assets/images/altlogo.png" type="image/png">
 </head>
 <body>
     <div class="container my-5">

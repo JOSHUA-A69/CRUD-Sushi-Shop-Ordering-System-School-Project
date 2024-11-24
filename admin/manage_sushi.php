@@ -17,6 +17,7 @@ $sushiItems = $sushiItemController->getAllSushiItems();
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/manage_sushi.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../assets/images/altlogo.png" type="image/png">
 </head>
 <body>
     <div class="container py-4">

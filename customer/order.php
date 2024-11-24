@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/order.css">
+    <link rel="icon" href="../assets/images/altlogo.png" type="image/png">
 </head>
 <body class="bg-light">
     <div class="container py-5">

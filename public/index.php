@@ -36,6 +36,7 @@ if (empty($_SESSION[CSRF_TOKEN_NAME])) {
     <title>Welcome to Divine Sushi Shop!</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="../assets/images/altlogo.png" type="image/png">
     <link rel="stylesheet" href="../assets/css/welcome.css">   
 </head>
 <body>

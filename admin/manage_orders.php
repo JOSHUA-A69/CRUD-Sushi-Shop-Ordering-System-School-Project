@@ -55,6 +55,7 @@ $mysqli->close();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/manage_orders.css">
+    <link rel="icon" href="../assets/images/altlogo.png" type="image/png">
 </head>
 <body class="bg-light">
     <div class="container py-5">
