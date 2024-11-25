@@ -40,6 +40,13 @@ if (empty($_SESSION[CSRF_TOKEN_NAME])) {
     <link rel="stylesheet" href="../assets/css/welcome.css">   
 </head>
 <body>
+
+     <!-- Loading Spinner -->
+     <div id="loading-overlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <!-- Background image and overlay -->
     <div class="background-image"></div>
     <div class="overlay"></div>
@@ -69,5 +76,6 @@ if (empty($_SESSION[CSRF_TOKEN_NAME])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>
