@@ -1,0 +1,18 @@
+Customer Features:
+Signup/Login: New customers must register to create an account.
+Existing customers can log in to access their profiles and functionalities.
+
+Profile Management: Customers can view and update their personal
+information, such as contact details and address.
+
+Sushi Menu Browsing: Customers can explore the available sushi items with
+detailed descriptions and prices.
+
+Order Placement: Customers can select sushi items, specify quantities, and
+place orders directly through the platform.
+
+Order History and Status Tracking: Customers can view their order history and
+check the status of current orders.
+
+Feedback Submission: Customers can provide feedback on their orders,
+helping the shop improve its services.

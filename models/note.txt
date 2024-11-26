@@ -1,0 +1,4 @@
+The models directory contains files that define the data structure and business logic for the application. 
+It typically includes schema definitions for our databases and methods for interacting with the data, such as creating, reading, updating, and deleting records. 
+
+Note: Some functions in the Models may appear redundant, as not all of them are actively used. This is due to challenges in maintaining and updating the codebase.

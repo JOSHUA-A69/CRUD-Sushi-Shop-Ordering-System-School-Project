@@ -1,0 +1,5 @@
+ This folder is a directory used to organize and store static files for the project, such as images, fonts, icons, 
+ or any other resources that don't require server-side processing. This helps maintain a clean and structured project setup.
+ 
+ The js folder includes a live_update.js file, which enables the site to fetch live updates for the chart directly from the database, 
+ ensuring real-time data representation.

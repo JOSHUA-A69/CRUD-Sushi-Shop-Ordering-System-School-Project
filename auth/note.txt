@@ -1,0 +1,3 @@
+The auth directory manages user authentication and includes files for specific tasks like signup 
+(for admins and users), login, password recovery (forgot and reset), and logout. 
+This structure organizes the logic for secure and efficient user access.

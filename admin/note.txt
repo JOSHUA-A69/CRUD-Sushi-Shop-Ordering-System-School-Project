@@ -1,0 +1,20 @@
+Administrator Features:
+Admin Login: Secure login for administrators to access management
+functionalities.
+
+Customer Management: View and manage all registered customers.Update
+specific customer details. Delete customer accounts if necessary.
+
+Sushi Item Management: Add new sushi items to the menu, including
+descriptions, prices, and availability. Edit details of existing menu items. Remove
+sushi items from the menu as needed.
+
+Order Management: View and manage all customer orders, ensuring timely
+processing and updates to order statuses (e.g., "Pending," "Preparing,"
+"Completed," "Cancelled").
+
+Handle payments and other logistical details related to customer orders.
+
+Profile Management: Administrators can update their profile information, such
+as email and contact number.
+

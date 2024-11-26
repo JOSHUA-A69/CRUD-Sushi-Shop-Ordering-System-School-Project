@@ -1,0 +1,1 @@
+Use to store configuration settings for the project. It includes files that define constants and database connection details.

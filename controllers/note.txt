@@ -1,0 +1,4 @@
+The controllers directory contains files that handle the logic for processing incoming requests, 
+interacting with models, and returning appropriate responses to the client. 
+
+ Note: Some functions in the controllers may appear redundant, as not all of them are actively used. This is due to challenges in maintaining and updating the codebase.
